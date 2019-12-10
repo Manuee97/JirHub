@@ -9,10 +9,10 @@ export default class SignUp extends Component {
 
   state = {
     username: "",
-    lastName: "",
+    lastname: "",
     email: "",
     password: "",
-    picture: ""
+    // picture: ""
   };
 
   handleChange = e => {
@@ -64,10 +64,10 @@ export default class SignUp extends Component {
                   required
                   onChange={this.handleChange}
                 />
-                <label htmlFor="lastName">Last Name: </label>
+                <label htmlFor="lastname">Last Name: </label>
                 <input
                   type="text"
-                  name="lastName"
+                  name="lastname"
                   value={lastname}
                   required
                   onChange={this.handleChange}

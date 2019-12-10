@@ -9,6 +9,8 @@ export default class Index extends Component {
 
   state = {
     username: "",
+    lastname: "",
+    email: "",
     password: "",
     picture: ""
   };

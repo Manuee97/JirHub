@@ -9,7 +9,7 @@ export default class Login extends Component {
 
   state = {
     username: "",
-    lastName: "",
+    lastname: "",
     email: "",
     password: "",
     picture: ""
