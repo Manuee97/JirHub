@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
 import AuthService from './services/AuthService';
+import Index from './components/Index/Index';
 import PrivateRoute from './guards/PrivateRoute';
 
 class App extends React.Component {
@@ -53,13 +54,15 @@ class App extends React.Component {
           {user && <Switch>
             <Route exact path="/login" render={(match) => <Login {...match} setUser={this.setUser} />} />  
             <Route exact path="/signup" render={(match) => <SignUp {...match} setUser={this.setUser} />} />
-            <PrivateRoute exact path="/" user={user} component={TodoList} />
+            {/* <PrivateRoute exact path="/" user={user} component={TodoList} /> */}
           </Switch> }
           {!user && <Switch>
             <Route exact path="/login" render={(match) => <Login {...match} setUser={this.setUser} />} />  
             <Route exact path="/signup" render={(match) => <SignUp {...match} setUser={this.setUser} />} />
-            <PrivateRoute exact path="/" user={user} component={TodoList} />
+            {/* <PrivateRoute exact path="/" user={user} component={TodoList} /> */}
+            <Route exact path="/" component={Index} />
           </Switch> }
+
         </header>
       </div>
     );

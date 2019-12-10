@@ -1,37 +1,37 @@
-import React, { Component } from 'react'
-import PageTitle from '../../fontStyles/PageTitle'
-import AuthService from '../../services/AuthService'
+import React, { Component } from "react";
+import AuthService from "../../services/AuthService";
 
 export default class SignUp extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.authService = new AuthService();
   }
 
   state = {
-    username: '',
-    password: '',
-    picture: ''
-  }
+    username: "",
+    lastName: "",
+    email: "",
+    password: "",
+    picture: ""
+  };
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { name, value } = e.target;
-    this.setState({...this.state, [name]:value})
-  }
-  handleSignUp = (e) => {
-    e.preventDefault()
+    this.setState({ ...this.state, [name]: value });
+  };
+  handleSignUp = e => {
+    e.preventDefault();
     const { history, setUser } = this.props;
-    this.authService.signup(this.state)
-    .then(
-      (user) => {
+    this.authService.signup(this.state).then(
+      user => {
         setUser(user);
-        history.push("/")
+        history.push("/");
       },
-      (error) => {
-        console.error(error)
+      error => {
+        console.error(error);
       }
-    )
-  }
+    );
+  };
 
   handleUpload = (e) => {
     const uploadData = new FormData();
@@ -48,19 +48,61 @@ export default class SignUp extends Component {
   }
 
   render() {
-    const { username, password, picture } = this.state;
+    const { username, lastname, email, password, isAdmin, picture } = this.state;
     return (
       <div>
-        <PageTitle color="black">SignUp</PageTitle>
-        <form onSubmit={this.handleSignUp}>
-          <label htmlFor="username">Username: </label>
-          <input type="text" name="username" value={username} required onChange={this.handleChange}/>
-          <label htmlFor="password">Password: </label>
-          <input type="password" value={password} name="password" required onChange={this.handleChange}/>
-          <input type="file" name="picture" onChange={this.handleUpload} />
-          <input type="submit" value="Create account"/>
-        </form>
+        <div className="containerRegister">
+          <div className="login-page">
+            <div className="form">
+              <h2 className="h2center">Sign Up</h2>
+              <form className="register-form" onSubmit={this.handleSignUp}>
+                <label htmlFor="username">Username: </label>
+                <input
+                  type="text"
+                  name="username"
+                  value={username}
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="lastName">Last Name: </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={lastname}
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="email">Email: </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="password">Password: </label>
+                <input
+                  type="password"
+                  value={password}
+                  name="password"
+                  required
+                  onChange={this.handleChange}
+                />
+
+                <input
+                  type="file"
+                  name="picture"
+                  onChange={this.handleUpload}
+                />
+                <button>SignUp</button>
+                <p className="message">
+                  Already registered? <a href="/login">Sign In</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import PageTitle from '../../fontStyles/PageTitle'
 import FormWrapper from './CreateTodoStyles';
 import TodoService from '../../services/TodoService';
 import Todo from '../Todo/Todo';
@@ -66,7 +65,6 @@ class TodoList extends React.Component {
     const { name, description, show, todos } = this.state;
     return (
       <div>
-        <PageTitle color="black">{`Todo List from ${loggedInUser.username} (${todos ? todos.length : 0})`}</PageTitle>
         
         <div className="container">
           <div>

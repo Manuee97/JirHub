@@ -1,5 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
 
-.App {
+/* .App {
   background: #f7f7f7;
   min-height: 100vh;
 }
@@ -51,4 +52,225 @@ img {
 
 .show-button:hover, .show-button:focus {
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+} */
+
+
+body {
+  font: 14px sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.navbar {
+  padding: 15px;
+  background: #0946a6;
 }
+
+.containerIndex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  width: 100vw;
+  height: calc(100vh - 48px);
+  background: #0946a6;
+}
+
+  /* Principio logo */ 
+.coasters-index .btn {
+  float: right; }
+
+  svg.intro {
+    margin-top: 30px;
+    max-width: 300px;
+    position: absolute;
+  }
+  svg.intro .text {
+    display: none;
+  }
+  svg.intro.go .text {
+    letter-spacing: 3px;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    display: block;
+  }
+  svg.intro.go .text-stroke {
+    fill: none;
+    stroke: #0650b5;
+    stroke-width: 2.8px;
+    stroke-dashoffset: -900;
+    stroke-dasharray: 900;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    animation: dash 1.8s ease-in-out forwards;
+  }
+  svg.intro.go .text-stroke:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  svg.intro.go .text-stroke:nth-child(3) {
+    animation-delay: 3.9s;
+  }
+  svg.intro.go .text-stroke-2 {
+    stroke: white;
+    animation-delay: 3.9s;
+  }
+  @keyframes dash {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  
+/* Fin logo */
+
+.btnl {
+  margin-top: 30%;
+  width: 220px;
+  height: 50px;
+  border: 2px solid white;
+  font-style: none;
+  color: white;
+  text-decoration:none;
+}
+
+.buttons a:last-child {
+  margin-left: 30px;
+}
+
+.btnl:hover{
+  background: white;
+  border: 2px solid white;
+  font-style: none;
+  color: black;
+  text-decoration:none;
+}
+
+.text-svg {
+  margin-bottom: 80px;
+  width: 75vw;
+}
+
+
+/* ------ Register and Login ------*/
+.containerRegister {
+  width: 100vw;
+  height: calc(100vh - 48px);
+  background: #0946a6;
+}
+
+.login-page {
+  width: 360px;
+  padding: 4% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 30px 45px 45px 45px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background:#0946a6;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #002765;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #0946a6;
+  text-decoration: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* ---- dashboard ------ */
+
+.container-dashboard {
+display: flex;
+}
+
+.container-dashboard .menu {
+  width: 5vw;
+  height: calc(100vh - 48px);
+  background: #0946a6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.container-dashboard .contenido {
+background: white;
+width: 95vw;
+}
+
+/* Iconos */
+
+.container-dashboard .menu a{
+  color: white;
+  text-decoration: none;
+ margin-top: 20px;
+}
+
+.itemFont {
+color: white;
+size:  20px;
+
+}
+
+.itemMenu {
+width: 30px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+
+.h2center {
+text-align: center;
+margin-bottom: 30px;
+}
+
+
+/*# sourceMappingURL=style.css.map */

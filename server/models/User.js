@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
 const IMG_URL = /.*\.(gif|jpe?g|bmp|png)$/igm
+
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
+  lastname: { type: String, required: true },
+  email:    { type: String, required: true },
   password: { type: String, required: true, minlength: 2 },
-  picture: { type: String, default: 'https://i.stack.imgur.com/l60Hf.png' }
+  picture:  { type: String, default: 'https://i.stack.imgur.com/l60Hf.png' },
+  isAdmin:  { type: Boolean, default: true }
 }, {
   timestamps: true,
   toJSON: {
