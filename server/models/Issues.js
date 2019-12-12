@@ -1,22 +1,20 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const todoSchema = new Schema(
+const issuesSchema = new Schema(
   {
     name: { type: String, required: true },
     type: { type: String, required: true },
     description: { type: String, required: true },
-    done: { type: Boolean, default: false },
-    collaborators: [
-      {
+    assigned: {
         type: Schema.Types.ObjectId,
         ref: "User"
-      }
-    ],
-    boss: {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }
+      },
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      },
+    isFinish: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -32,5 +30,5 @@ const todoSchema = new Schema(
   }
 );
 
-const Todo = mongoose.model("Todo", todoSchema);
-module.exports = Todo;
+const Issues = mongoose.model("Issues", issuesSchema);
+module.exports = Issues;

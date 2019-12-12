@@ -1,27 +1,51 @@
-import React from 'react'
 import FormWrapper from './CreateTodoStyles';
 import TodoService from '../../services/TodoService';
 import Todo from '../Todo/Todo';
+import React, { Component } from "react";
+import AuthService from "../../services/AuthService";
 
-class TodoList extends React.Component {
+export default class Project extends Component {
   constructor(props) {
     super(props);
-    this.todoService = new TodoService();
-  }
-
-  state = {
-    name: '',
+    this.state = {
+      users: [],
+      collaborators: [],
+      name: '',
     description: '',
     show: false,
     type: '',
-    collaborators: [],
     boss: '',
     todos: null
+    };
+    this.todoService = new TodoService();
+    this.authService = new AuthService();
+
   }
 
+  state = {
+  todos: null
+  };
+
+
+  componentDidMount=()=>{
+
+    this.authService.allUsers().then((users) => {
+      console.log(users)
+      this.setState({...this.setState, users: users.user})
+    })
+
+  }
+  
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ ...this.state, [name]: value })
+  }
+
+  updateCollaborators = (e) => {
+    const arr = [...this.state.collaborators]
+    const value  = e.target.value;
+    arr.push(value)
+    this.setState({ ...this.state, collaborators: arr})
   }
 
   handleSubmit = (e) => {
@@ -62,31 +86,44 @@ class TodoList extends React.Component {
     const { show } = this.state;
     this.setState({...this.state, show: !show})
   }
-
+  
   render() {
     const { loggedInUser } = this.props;
     const { name, description, show, todos, type, collaborators, boss } = this.state;
     return (
+      <div className="contenido">
+          <h1>Aqui se mostrarán los proyectos y tendra el boton para crear uno nuevo</h1>
       <div>
         
         <div className="container">
-          <button className="show-button" onClick={this.toggleShow}>{show ? 'Hide form' : 'Show form'}</button>
+          <button className="show-button" onClick={this.toggleShow}>Crear Proyecto</button>
           <FormWrapper onSubmit={this.handleSubmit} show={show}>
             <p>Create todo:</p>
             <div>
               <label>Todo Name:</label><input type="text" name="name" onChange={this.handleChange} value={name} />
             </div>
             <div>
-              <label htmlFor="type">Tipo:</label> <input type="text" name="description" onChange={this.handleChange} value={type} />
+              <label htmlFor="type">Tipo:</label> <input type="text" name="type" onChange={this.handleChange} value={type} />
             </div>
             <div>
               <label htmlFor="description">Description:</label> <input type="text" name="description" onChange={this.handleChange} value={description} />
             </div>
             <div>
-              <label htmlFor="collaborators">Colaboradores:</label> <input type="text" name="description" onChange={this.handleChange} value={collaborators} />
+
+            <label htmlFor="collaboratos">Colaboradores:</label>
+            <select multiple> 
+            {this.state.users.map(user => {
+                  return (
+                    
+                  <option onClick={this.updateCollaborators} value={user.id}>{user.username}</option> 
+                    
+                  );
+                })}
+                </select>
+
             </div>
             <div>
-              <label htmlFor="boss">Jefe:</label> <input type="text" name="description" onChange={this.handleChange} value={boss} />
+              <label htmlFor="boss">Jefe:</label> <input type="text" name="boss" onChange={this.handleChange} value={boss} />
             </div>
             <input type="submit" value="Create" className="submit-button" />
           </FormWrapper>
@@ -96,8 +133,8 @@ class TodoList extends React.Component {
           {!todos && <p>Loading...</p> }
         </div>
       </div>
-    )
+      </div>
+    );
   }
 }
 
-export default TodoList;

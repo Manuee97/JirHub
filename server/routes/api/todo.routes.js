@@ -11,12 +11,25 @@ router.get('/', (req, res, next) => {
   })
 })
 
-router.post('/new', (req, res, next) => {
-  const { name, description } = req.body;
+router.get('/dashboard', (req, res, next) => {
+  Todo.find()
+  .then(todos => {
+    res.status(200).json(todos)
+  })
+  .catch(error => {
+    res.status(500).json({message: 'Something went wrong'})
+  })
+})
 
+router.post('/new', (req, res, next) => {
+  const { name, type, description, collaborators, boss } = req.body.name;
+  console.log(collaborators)
   const newTodo = new Todo({
     name, 
-    description
+    type,
+    description,
+    collaborators, 
+    boss
   })
 
   newTodo.save()

@@ -8,6 +8,12 @@ class AuthService {
     })
   }
 
+  logout = (user) => {
+    return this.instance.post('/logout', user)
+    .then(res => Promise.resolve(res.data))
+    .catch(error => console.error(error))
+  }
+
   signup = (user) => {
     return this.instance.post('/signup', user)
     .then(res => Promise.resolve(res.data))
@@ -31,6 +37,14 @@ class AuthService {
     .then(res => Promise.resolve(res.data))
     .catch(error => console.error(error))
   }
+
+  allUsers = () => {
+    return this.instance.get('/users')
+    .then(res => Promise.resolve(res.data))
+    .catch(error => console.error(error))
+  }
+
+
 }
 
 export default AuthService;

@@ -28,19 +28,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-const whitelist = ['http://localhost:3000','http://localhost:3001']
+const whiteList = ['http://localhost:3000','http://localhost:3001',"http://localhost"]
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
+  origin: (origin, cb) => {
+    const originIsWhitelisted = whiteList.includes(origin);
+    cb(null, originIsWhitelisted)
   },
   credentials: true
 }
-
 app.use(cors(corsOptions));
+
 
 // Enable authentication using session + passport
 app.use(session({

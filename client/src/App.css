@@ -229,7 +229,7 @@ display: flex;
 }
 
 .container-dashboard .menu {
-  width: 5vw;
+  width: 6vw;
   height: calc(100vh - 48px);
   background: #0946a6;
   display: flex;
@@ -239,8 +239,9 @@ display: flex;
 }
 
 .container-dashboard .contenido {
+  padding: 20px;
 background: white;
-width: 95vw;
+width: 48vw;
 }
 
 /* Iconos */
@@ -248,7 +249,7 @@ width: 95vw;
 .container-dashboard .menu a{
   color: white;
   text-decoration: none;
- margin-top: 20px;
+ margin-top: 33px;
 }
 
 .itemFont {

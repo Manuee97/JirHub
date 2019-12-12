@@ -8,6 +8,15 @@ const uploader = require('../../configs/cloudinary.config')
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+router.get('/users', (req, res, next) => {
+  User.find()
+  .then(user => {
+    res.status(200).json({user})
+  })
+  .catch(error => {
+    res.status(500).json({message: 'Something went wrong'})
+  })
+})
 
 router.post('/signup', (req, res, next) => {
   const { username, lastname, email, isAdmin, password, picture } = req.body
@@ -100,7 +109,7 @@ router.post('/login', (req, res, next) => {
 
 router.post('/logout', (req, res, next) => {
   // req.logout() is defined by passport
-  req.logout();
+  req.session.destroy();
   res.status(200).json({ message: 'Log out success!' });
 });
 
