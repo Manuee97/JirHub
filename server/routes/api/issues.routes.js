@@ -1,18 +1,8 @@
 const router = require('express').Router();
-const Todo = require('../../models/Todo')
+const Issues = require('../../models/Issues')
 
 router.get('/', (req, res, next) => {
-  Todo.find()
-  .then(todos => {
-    res.status(200).json(todos)
-  })
-  .catch(error => {
-    res.status(500).json({message: 'Something went wrong'})
-  })
-})
-
-router.get('/dashboard', (req, res, next) => {
-  Todo.find()
+    Issues.find()
   .then(todos => {
     res.status(200).json(todos)
   })
@@ -22,13 +12,15 @@ router.get('/dashboard', (req, res, next) => {
 })
 
 router.post('/new', (req, res, next) => {
-  const { name, type, description, collaborators, boss } = req.body.name;
+  const { name, type, description, assigned, creator, isFinish, idProject } = req.body.name;
   const newTodo = new Todo({
     name, 
     type,
     description,
-    collaborators, 
-    boss
+    assigned, 
+    creator,
+    isFinish,
+    idProject
   })
 
   newTodo.save()
@@ -42,7 +34,7 @@ router.post('/new', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  Todo.findById(id)
+  Issues.findById(id)
   .then(todo => {
     res.status(200).json(todo)
   })
@@ -51,7 +43,7 @@ router.get('/:id', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   const { id } = req.params;
-  Todo.findByIdAndUpdate(id, req.body)
+  Issues.findByIdAndUpdate(id, req.body)
   .then(() => {
     res.status(200).json({ message: `Todo ${id} updated` })
   })
@@ -62,7 +54,7 @@ router.put('/:id', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   const { id } = req.params;
-  Todo.findByIdAndDelete(id)
+  Issues.findByIdAndDelete(id)
   .then(() => res.status(200).json({message: `Todo ${id} deleted`}))
   .catch(error => res.status(500).json({ message: 'Something went wrong'}))
 })

@@ -22,13 +22,8 @@ export default class Project extends Component {
 
   }
 
-  state = {
-  todos: null
-  };
-
-
   componentDidMount=()=>{
-
+    this.updateTodos()
     this.authService.allUsers().then((users) => {
       console.log(users)
       this.setState({...this.setState, users: users.user})
@@ -65,11 +60,7 @@ export default class Project extends Component {
     // <Todo key={i} name={todo.name} description={todo.description} done={todo.done} />
     return todos.map((todo, i) => <Todo key={i} {...todo} updateTodos={this.updateTodos} />)
   }
-
-  componentDidMount() {
-    this.updateTodos()
-  }
-  
+ 
   updateTodos = () => {
     this.todoService.fetchTodos()
       .then(

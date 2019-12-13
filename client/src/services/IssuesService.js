@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-class TodoService {
+class IssuesService {
   constructor() {
     this.instance = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/todos`,
+      baseURL: `${process.env.REACT_APP_API_URL}/issues`,
       withCredentials: true
     })
   }
@@ -21,8 +21,8 @@ class TodoService {
     .catch(error => console.error(error))
   }
 
-  createTodo = (name, description, type, collaborators, boss) => {
-    return this.instance.post('/new', { name, description, type, collaborators, boss })
+  createTodo = (name, type, description, assigned, creator, isFinish, idProject ) => {
+    return this.instance.post('/new', { name, type, description, assigned, creator, isFinish, idProject })
     .then(res => Promise.resolve(res.data))
     .catch(error => console.error(error))
   }
@@ -40,6 +40,4 @@ class TodoService {
   }
 }
 
-export default TodoService;
-
-
+export default IssuesService;

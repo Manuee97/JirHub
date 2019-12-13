@@ -7,6 +7,7 @@ import Users from "./users";
 import Logs from "./log";
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Settings from "./settings";
+import DetailsProject from "./detailsProject";
 
 class Dashboard extends Component {
 //   constructor(props) {
@@ -95,7 +96,7 @@ logoutUser = () => {
           <Route exact path='/users' render={() => <Users name={loggedInUser.username} lastname={loggedInUser.lastname} email={loggedInUser.email} id={loggedInUser.id} />}/>
           <Route exact path='/logs' exact component={Logs} />
           <Route exact path='/settings' exact component={Settings} />
-          <Route path='/post/:id' />
+          <Route exact path='/todos/:id' exact component={DetailsProject}/>
         </Switch>
 
         {/* <Home name={loggedInUser.username} lastname={loggedInUser.lastname}></Home>

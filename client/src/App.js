@@ -63,6 +63,7 @@ class App extends React.Component {
             <PrivateRoute exact path="/users" user={user} component={Dashboard} />
             <PrivateRoute exact path="/logs" user={user} component={Dashboard} />
             <PrivateRoute exact path="/settings" user={user} component={Dashboard} />
+            <PrivateRoute exact path="/todos/:id" user={user} component={Dashboard} />
           </Switch> }
           {!user && <Switch>
             <Route exact path="/login" render={(match) => <Login {...match} setUser={this.setUser} />} />  

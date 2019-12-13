@@ -47,7 +47,7 @@ class Users extends Component {
                       <Table.Cell>{user.username}</Table.Cell>
                       <Table.Cell>{user.lastname}</Table.Cell>
                       <Table.Cell>{user.email}</Table.Cell>
-                      <Table.Cell>{user._id}</Table.Cell>
+                      <Table.Cell>{user.id}</Table.Cell>
                     </Table.Row>
                   );
                 })}
