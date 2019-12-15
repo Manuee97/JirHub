@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import TodoService from './services/TodoService';
-import TodoList from './components/TodoList/TodoList';
 import { Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
@@ -58,12 +57,12 @@ class App extends React.Component {
             <Route exact path="/logout" user={user} />
 
             <PrivateRoute exact path="/" user={user} component={Dashboard} />
-            <PrivateRoute exact path="/prueba" user={user} component={TodoList} />
             <PrivateRoute exact path="/project" user={user} component={Dashboard} />
             <PrivateRoute exact path="/users" user={user} component={Dashboard} />
             <PrivateRoute exact path="/logs" user={user} component={Dashboard} />
             <PrivateRoute exact path="/settings" user={user} component={Dashboard} />
             <PrivateRoute exact path="/todos/:id" user={user} component={Dashboard} />
+            <PrivateRoute exact path="/issues/:id" user={user} component={Dashboard} />
           </Switch> }
           {!user && <Switch>
             <Route exact path="/login" render={(match) => <Login {...match} setUser={this.setUser} />} />  

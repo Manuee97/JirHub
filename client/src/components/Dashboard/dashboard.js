@@ -8,12 +8,9 @@ import Logs from "./log";
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Settings from "./settings";
 import DetailsProject from "./detailsProject";
+import DetailsIssues from "./detailsIssues";
 
 class Dashboard extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.authService = new AuthService();
-//   }
 constructor(props) {
   super(props)
   this._service = new AuthService()
@@ -26,31 +23,7 @@ logoutUser = () => {
       .catch(err => console.log(err))
 }
 
-//   state = {
-//     username: "",
-//     lastname: "",
-//     email: "",
-//     password: "",
-//     picture: ""
-//   };
 
-//   handleChange = e => {
-//     const { name, value } = e.target;
-//     this.setState({ ...this.state, [name]: value });
-//   };
-//   handleLogin = e => {
-//     const { setUser, history } = this.props;
-//     e.preventDefault();
-//     this.authService.login(this.state).then(
-//       user => {
-//         setUser(user);
-//         history.push("/");
-//       },
-//       error => {
-//         console.error(error);
-//       }
-//     );
-//   };
 
   render() {
     // const { username, password } = this.state;
@@ -95,8 +68,9 @@ logoutUser = () => {
           <Route exact path='/project' exact component={Project} />
           <Route exact path='/users' render={() => <Users name={loggedInUser.username} lastname={loggedInUser.lastname} email={loggedInUser.email} id={loggedInUser.id} />}/>
           <Route exact path='/logs' exact component={Logs} />
-          <Route exact path='/settings' exact component={Settings} />
+          <Route exact path='/settings' render={() => <Settings name={loggedInUser.username} lastname={loggedInUser.lastname}/>}  />
           <Route exact path='/todos/:id' exact component={DetailsProject}/>
+          <Route exact path='/issues/:id' exact component={DetailsIssues}/>
         </Switch>
 
         {/* <Home name={loggedInUser.username} lastname={loggedInUser.lastname}></Home>

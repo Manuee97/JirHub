@@ -1,8 +1,9 @@
-import FormWrapper from './CreateTodoStyles';
 import TodoService from '../../services/TodoService';
 import Todo from '../Todo/Todo';
 import React, { Component } from "react";
 import AuthService from "../../services/AuthService";
+import FormProject from './FormProject';
+
 
 export default class Project extends Component {
   constructor(props) {
@@ -57,7 +58,6 @@ export default class Project extends Component {
 
   displayTodos = () => {
     const { todos } = this.state;
-    // <Todo key={i} name={todo.name} description={todo.description} done={todo.done} />
     return todos.map((todo, i) => <Todo key={i} {...todo} updateTodos={this.updateTodos} />)
   }
  
@@ -83,21 +83,23 @@ export default class Project extends Component {
     const { name, description, show, todos, type, collaborators, boss } = this.state;
     return (
       <div className="contenido">
-          <h1>Aqui se mostrarán los proyectos y tendra el boton para crear uno nuevo</h1>
-      <div>
+        <h1>Proyectos</h1>
+          <button className="btn btn-primary" onClick={this.toggleShow}>Crear Proyecto</button>
+
+
+        <div className="modals">
         
-        <div className="container">
-          <button className="show-button" onClick={this.toggleShow}>Crear Proyecto</button>
-          <FormWrapper onSubmit={this.handleSubmit} show={show}>
-            <p>Create todo:</p>
-            <div>
-              <label>Todo Name:</label><input type="text" name="name" onChange={this.handleChange} value={name} />
-            </div>
-            <div>
+        <FormProject show={show}>
+          <form onSubmit={this.handleSubmit} className="form">
+          <p>Crear Proyecto:</p>
+          <div>
+          <label>Nombre:</label><input type="text" name="name" onChange={this.handleChange} value={name} />
+          </div>
+          <div>
               <label htmlFor="type">Tipo:</label> <input type="text" name="type" onChange={this.handleChange} value={type} />
             </div>
             <div>
-              <label htmlFor="description">Description:</label> <input type="text" name="description" onChange={this.handleChange} value={description} />
+              <label htmlFor="description">Descripción:</label> <input type="text" name="description" onChange={this.handleChange} value={description} />
             </div>
             <div>
 
@@ -116,14 +118,20 @@ export default class Project extends Component {
             <div>
               <label htmlFor="boss">Jefe:</label> <input type="text" name="boss" onChange={this.handleChange} value={boss} />
             </div>
-            <input type="submit" value="Create" className="submit-button" />
-          </FormWrapper>
-        </div>
-        <div className="todos-container">
+            <button className="btn btn-primary" ype="submit" value="Create">Crear</button>
+            <button className="btn btn-danger" onClick={this.toggleShow}>Salir</button>
+          </form>
+          
+
+        </FormProject>
+        </div> 
+
+        <div className="contenido">
+        <div className="row">
           {todos && this.displayTodos()}
           {!todos && <p>Loading...</p> }
         </div>
-      </div>
+        </div>
       </div>
     );
   }

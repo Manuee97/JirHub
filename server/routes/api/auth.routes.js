@@ -18,6 +18,18 @@ router.get('/users', (req, res, next) => {
   })
 })
 
+
+router.get('/userOne', (req, res, next) => {
+  User.findOne({ username })
+  .then(user => {
+    res.status(200).json({user})
+  })
+  .catch(error => {
+    res.status(500).json({message: 'Something went wrong'})
+  })
+})
+
+
 router.post('/signup', (req, res, next) => {
   const { username, lastname, email, isAdmin, password, picture } = req.body
 

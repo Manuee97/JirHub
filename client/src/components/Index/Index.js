@@ -86,6 +86,9 @@ export default class Index extends Component {
             <button className="btn btn-link btnl">Sign Up</button>
           </a>
         </div>
+        <div className="footer">
+          <p>JirHub creado por un <a href="https://www.linkedin.com/in/manuelalvarezrosado/">IronHacker</a> con  <span className="heart"> ♥</span></p>
+        </div>
       </div>
     );
   }

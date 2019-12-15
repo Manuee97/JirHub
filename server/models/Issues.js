@@ -19,6 +19,7 @@ const issuesSchema = new Schema(
         ref: "User"
       },
     isFinish: { type: Boolean, default: false },
+    comentario: { type: String, required: true },
   },
   {
     timestamps: true,

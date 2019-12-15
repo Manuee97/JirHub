@@ -27,6 +27,8 @@ const FormWrapper = styled.form`
     margin-bottom: 5%;
     
   }
+
 `;
+
 
 export default FormWrapper;

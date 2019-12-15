@@ -21,8 +21,8 @@ class IssuesService {
     .catch(error => console.error(error))
   }
 
-  createTodo = (name, type, description, assigned, creator, isFinish, idProject ) => {
-    return this.instance.post('/new', { name, type, description, assigned, creator, isFinish, idProject })
+  createTodo = (name, type, description, assigned, creator, isFinish, idProject, comentario ) => {
+    return this.instance.post('/new', { name, type, description, assigned, creator, isFinish, idProject, comentario })
     .then(res => Promise.resolve(res.data))
     .catch(error => console.error(error))
   }

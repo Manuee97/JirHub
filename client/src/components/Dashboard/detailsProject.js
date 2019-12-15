@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import FormWrapper from "./CreateTodoStyles";
 import IssuesService from "../../services/IssuesService";
 import Issues from "../Issues/Issues";
 import AuthService from "../../services/AuthService";
-import Todo from '../Todo/Todo';
 import TodoService from '../../services/TodoService';
-
-
+import FormProject from './FormProject';
 
 class DetailsProject extends Component {
   constructor(props) {
@@ -21,6 +18,7 @@ class DetailsProject extends Component {
       creator: '',
       isFinish: '',
       idProject: '',
+      comentario: '',
       issues: null
     };
     this.issuesService = new IssuesService();
@@ -29,6 +27,7 @@ class DetailsProject extends Component {
   }
 
   componentDidMount = () => {
+    this.updateTodos()
     this.todoService.fetchOneTodo(this.props.match.params.id).then(users => {
       this.setState({ users: [users] });
     });
@@ -47,12 +46,12 @@ class DetailsProject extends Component {
   }
 
   handleSubmit = (e) => {
-    const { name, type, description, assigned, creator, isFinish, idProject  } = this.state;
+    const { name, type, description, assigned, creator, isFinish, idProject, comentario  } = this.state;
     e.preventDefault();
-    this.issuesService.createTodo({name, type, description, assigned, creator, isFinish, idProject})
+    this.issuesService.createTodo({name, type, description, assigned, creator, isFinish, idProject, comentario})
       .then(
         () => {
-          this.setState({...this.state, name: '', type: '', description: '', assigned: '' , creator: '', isFinish: '', idProject: ''})
+          this.setState({...this.state, name: '', type: '', description: '', assigned: '' , creator: '', isFinish: '', idProject: '', comentario: ''})
           this.updateTodos()
         },
         (error) => console.error(error))
@@ -60,10 +59,10 @@ class DetailsProject extends Component {
 
   displayTodos = () => {
     const { issues } = this.state;
-    // <Todo key={i} name={todo.name} description={todo.description} done={todo.done} />
     return issues.map((issue, i) => <Issues key={i} {...issue} updateTodos={this.updateTodos} />)
   }
  
+
   updateTodos = () => {
     this.issuesService.fetchTodos()
       .then(
@@ -82,8 +81,11 @@ class DetailsProject extends Component {
   }
 
   render() {
-    const { name, type, description, assigned, creator, isFinish, idProject, show} = this.state;
+    const { name, type, description, assigned, creator, isFinish, idProject, show, issues, comentario} = this.state;
     return (
+
+
+
       <div className="contenido">
         {this.state.users.map(item => {
           return (
@@ -97,39 +99,25 @@ class DetailsProject extends Component {
           );
         })}
 
-        <button className="show-button" onClick={this.toggleShow}>
+        <button className="btn btn-primary" onClick={this.toggleShow}>
           Crear Incidencia
         </button>
-        <FormWrapper onSubmit={this.handleSubmit} show={show}>
-          <p>Create todo:</p>
+
+        <div className="modals">
+        
+        <FormProject show={show}>
+          <form onSubmit={this.handleSubmit} className="form">
+          <p>Crear Incidencia:</p>
           <div>
-            <label>Todo Name:</label>
-            <input
-              type="text"
-              name="name"
-              onChange={this.handleChange}
-              value={name}
-            />
+          <label>Nombre:</label><input type="text" name="name" onChange={this.handleChange} value={name} />
           </div>
           <div>
-            <label htmlFor="type">Tipo:</label>
-            <input
-              type="text"
-              name="type"
-              onChange={this.handleChange}
-              value={type}
-            />
-          </div>
-          <div>
-            <label htmlFor="description">Description:</label>
-            <input
-              type="text"
-              name="description"
-              onChange={this.handleChange}
-              value={description}
-            />
-          </div>
-          <div>
+              <label htmlFor="type">Tipo:</label> <input type="text" name="type" onChange={this.handleChange} value={type} />
+            </div>
+            <div>
+              <label htmlFor="description">Descripción:</label> <input type="text" name="description" onChange={this.handleChange} value={description} />
+            </div>
+            <div>
             <label htmlFor="assigned">Asignado:</label>
             <input
               type="text"
@@ -165,8 +153,30 @@ class DetailsProject extends Component {
               value={idProject}
             />
           </div>
-          <input type="submit" value="Create" className="submit-button" />
-        </FormWrapper> 
+          <div>
+            <label htmlFor="comentario">Descripción del problema:</label>
+            <input
+              type="text"
+              name="comentario"
+              onChange={this.handleChange}
+              value={comentario}
+            />
+          </div>
+            <button className="btn btn-primary" ype="submit" value="Create">Crear</button>
+            <button className="btn btn-danger" onClick={this.toggleShow}>Salir</button>
+          </form>
+          
+
+        </FormProject>
+        </div> 
+        <div>
+        <div className="contenido">
+        <div className="row">
+          {issues && this.displayTodos()}
+          {!issues && <p>Loading...</p> }
+        </div>
+        </div>
+        </div>
       </div>
     );
   }

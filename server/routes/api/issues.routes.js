@@ -12,20 +12,23 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/new', (req, res, next) => {
-  const { name, type, description, assigned, creator, isFinish, idProject } = req.body.name;
-  const newTodo = new Todo({
+  const { name, type, description, assigned, creator, isFinish, idProject, comentario } = req.body.name;
+  const newIssue = new Issues({
     name, 
     type,
     description,
     assigned, 
     creator,
     isFinish,
-    idProject
+    idProject,
+    comentario
   })
 
-  newTodo.save()
-  .then(todo => {
-    res.status(200).json(todo)
+console.log(newIssue)
+
+  newIssue.save()
+  .then(issue => {
+    res.status(200).json(issue)
   })
   .catch(error => {
     res.status(500).json({message: 'Error saving new Todo'})
@@ -35,8 +38,8 @@ router.post('/new', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Issues.findById(id)
-  .then(todo => {
-    res.status(200).json(todo)
+  .then(issue => {
+    res.status(200).json(issue)
   })
   .catch(error => res.status(500).json({ message: 'Todo not found'}))
 })

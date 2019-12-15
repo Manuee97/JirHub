@@ -73,7 +73,7 @@ a {
   overflow: hidden;
   text-align: center;
   width: 100vw;
-  height: calc(100vh - 48px);
+  height: calc(100vh - 62px);
   background: #0946a6;
 }
 
@@ -226,11 +226,12 @@ a {
 
 .container-dashboard {
 display: flex;
+height: 100%;
 }
 
 .container-dashboard .menu {
   width: 6vw;
-  height: calc(100vh - 48px);
+  height: 100vh;
   background: #0946a6;
   display: flex;
   flex-direction: column;
@@ -272,6 +273,37 @@ text-align: center;
 text-align: center;
 margin-bottom: 30px;
 }
+
+.footer{
+  font-size: 17px;
+  color: white;
+  margin-top: 33vh;
+}
+
+.heart{
+  color:red
+}
+
+.margin-project {
+  padding: 20px;
+}
+
+.btn-primary {
+  background-color: #0946a6;
+}
+
+.margin-left-btn {
+  margin-left: 30px;
+}
+
+.modals {
+  position: absolute;
+  margin:0px;
+  padding: 0px;
+  top: 0px;
+  left: 0px;
+}
+
 
 
 /*# sourceMappingURL=style.css.map */

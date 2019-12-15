@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://localhost:3000/todos/5df25d81d9572c9eba585cf3 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="stylesheet" href="./Todo App ✅_files/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="./Todo App ✅_files/jquery-3.4.1.min.js"></script>
+  <script src="./Todo App ✅_files/9c01b07d37.js" crossorigin="anonymous"></script><link rel="stylesheet" href="./Todo App ✅_files/free.min.css" media="all"><link rel="stylesheet" href="./Todo App ✅_files/free-v4-font-face.min.css" media="all"><link rel="stylesheet" href="./Todo App ✅_files/free-v4-shims.min.css" media="all">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Todo App ✅</title>
+  <style>body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+</style><style>@import url(https://fonts.googleapis.com/css?family=Montserrat:700);</style><style>/* .App {
+  background: #f7f7f7;
+  min-height: 100vh;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.todos-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+}
+
+img {
+  object-fit: cover;
+  width: 200px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 5% 0;
+}
+
+.show-button{
+  margin-top: 20px;
+  padding: 1% 3%;
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  color: black;
+  margin-right: 10px;
+  transition: background-color .3s;
+  background-color: #2ecc71;
+  color: #ecf0f1;
+}
+
+.show-button:hover, .show-button:focus {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+} */
+
+
+body {
+  font: 14px sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.navbar {
+  padding: 15px;
+  background: #0946a6;
+}
+
+.containerIndex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  width: 100vw;
+  height: calc(100vh - 62px);
+  background: #0946a6;
+}
+
+  /* Principio logo */ 
+.coasters-index .btn {
+  float: right; }
+
+  svg.intro {
+    margin-top: 30px;
+    max-width: 300px;
+    position: absolute;
+  }
+  svg.intro .text {
+    display: none;
+  }
+  svg.intro.go .text {
+    letter-spacing: 3px;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    display: block;
+  }
+  svg.intro.go .text-stroke {
+    fill: none;
+    stroke: #0650b5;
+    stroke-width: 2.8px;
+    stroke-dashoffset: -900;
+    stroke-dasharray: 900;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    animation: dash 1.8s ease-in-out forwards;
+  }
+  svg.intro.go .text-stroke:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  svg.intro.go .text-stroke:nth-child(3) {
+    animation-delay: 3.9s;
+  }
+  svg.intro.go .text-stroke-2 {
+    stroke: white;
+    animation-delay: 3.9s;
+  }
+  @keyframes dash {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  
+/* Fin logo */
+
+.btnl {
+  margin-top: 30%;
+  width: 220px;
+  height: 50px;
+  border: 2px solid white;
+  font-style: none;
+  color: white;
+  text-decoration:none;
+}
+
+.buttons a:last-child {
+  margin-left: 30px;
+}
+
+.btnl:hover{
+  background: white;
+  border: 2px solid white;
+  font-style: none;
+  color: black;
+  text-decoration:none;
+}
+
+.text-svg {
+  margin-bottom: 80px;
+  width: 75vw;
+}
+
+
+/* ------ Register and Login ------*/
+.containerRegister {
+  width: 100vw;
+  height: calc(100vh - 48px);
+  background: #0946a6;
+}
+
+.login-page {
+  width: 360px;
+  padding: 4% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 30px 45px 45px 45px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background:#0946a6;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #002765;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #0946a6;
+  text-decoration: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* ---- dashboard ------ */
+
+.container-dashboard {
+display: flex;
+}
+
+.container-dashboard .menu {
+  width: 6vw;
+  height: calc(100vh - 48px);
+  background: #0946a6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.container-dashboard .contenido {
+  padding: 20px;
+background: white;
+width: 94vw;
+}
+
+/* Iconos */
+
+.container-dashboard .menu a{
+  color: white;
+  text-decoration: none;
+ margin-top: 33px;
+}
+
+.itemFont {
+color: white;
+size:  20px;
+
+}
+
+.itemMenu {
+width: 30px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+
+.h2center {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.footer{
+  font-size: 17px;
+  color: white;
+  margin-top: 33vh;
+}
+
+.heart{
+  color:red
+}
+
+.margin-project {
+  padding: 20px;
+}
+
+.btn-primary {
+  background-color: #0946a6;
+}
+.margin-left-btn {
+  margin-left: 30px;
+}</style><style data-styled="" data-styled-version="4.4.1">
+/* sc-component-id: sc-bdVaJa */
+
+/* sc-component-id: sc-bwzfXH */
+
+/* sc-component-id: sc-htpNat */
+.hztmvV{display:none;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:50%;margin:0 auto;padding:5% 0;} .hztmvV .submit-button{padding:1% 3%;border-width:0;outline:none;border-radius:2px;color:black;margin-right:10px;-webkit-transition:background-color .3s;transition:background-color .3s;background-color:#2ecc71;color:#ecf0f1;} .hztmvV .submit-button:hover,.hztmvV .submit-button:focus{box-shadow:0 1px 4px rgba(0,0,0,.6);} .hztmvV div{margin-bottom:5%;}
+/* sc-component-id: sc-bxivhb */
+</style></head>
+  <body>
+
+  <script>
+      $(function () {
+        $('.intro').addClass('go');
+  
+      })
+    </script>
+  
+  
+  
+  
+  
+    <nav class="navbar navbar-expand-lg">
+        
+      <svg class="intro go" viewBox="0 0 200 86">
+          <a class="nav-link" href="/"><text text-anchor="start" x="10" y="30" class="text text-stroke" clip-path="url(#text1)">JirHub</text>
+        
+            <text text-anchor="start" x="10" y="30" class="text text-stroke text-stroke-2" clip-path="url(#text1)">JirHub</text></a>
+        
+        <defs>
+          <clippath id="text1">
+            <text text-anchor="start" x="10" y="30" class="text">JirHub</text>
+          </clippath>
+        </defs>
+      </svg>
+      <div>
+        <g>
+          <path d="M70.598,16.753c-1.722-1.24-4.113-0.852-5.349,0.866c-1.242,1.716-0.853,4.113,0.865,5.35   c13.613,9.818,18.021,27.857,10.482,42.89c-4.082,8.138-11.088,14.202-19.726,17.066c-8.636,2.871-17.877,2.2-26.013-1.879   c-8.134-4.083-14.197-11.088-17.066-19.722c-2.866-8.642-2.197-17.877,1.886-26.014c4.958-9.89,14.458-16.779,25.413-18.429   c0.074-0.008,0.137-0.036,0.211-0.053l0.157,7.571c0.021,0.839,0.542,1.585,1.321,1.889c0.782,0.305,1.672,0.11,2.25-0.496   l10.904-11.379c0.794-0.828,0.764-2.142-0.062-2.933L44.492,0.577c-0.606-0.582-1.499-0.739-2.267-0.399   c-0.251,0.108-0.476,0.269-0.662,0.462c-0.372,0.389-0.585,0.919-0.579,1.479l0.151,7.212c-0.385-0.063-0.78-0.087-1.188-0.027   c-13.418,2.021-25.052,10.46-31.125,22.571C-1.499,52.451,6.85,77.584,27.424,87.901c5.989,3.005,12.362,4.429,18.646,4.429   c15.306,0,30.065-8.439,37.382-23.028C92.688,50.884,87.284,28.782,70.598,16.753z" fill="#404853">
+      </path></g></div>
+      
+  
+  
+  
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:3000/">.</a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="/coasters">Montañas rusas</a> -->
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="/parks">Parques</a> -->
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div class="App"><header class="App-header"><div class="container-dashboard"><div class="menu"><a href="http://localhost:3000/"><div class="itemMenu"><i class="fas fa-home fa-2x itemFont" aria-hidden="true"></i>Home</div></a><a href="http://localhost:3000/project"><div class="itemMenu"><i class="fas fa-tasks fa-2x itemFont" aria-hidden="true"></i>Project</div></a><a href="http://localhost:3000/users"><div class="itemMenu"><i class="fas fa-user fa-2x itemFont" aria-hidden="true"></i>User</div></a><a href="http://localhost:3000/logs"><div class="itemMenu"><i class="fas fa-rss fa-2x itemFont" aria-hidden="true"></i>Log</div></a><a href="http://localhost:3000/settings"><div class="itemMenu"><i class="fas fa-cogs fa-2x itemFont" aria-hidden="true"></i>Settings</div></a><a href="http://localhost:3000/"><div class="itemMenu"><i class="fas fa-sign-out-alt fa-2x itemFont" aria-hidden="true"></i>Logout</div></a></div><div class="contenido"><div><h3>Nombre del proyecto: Militar</h3><p>Tipo: Hard</p><p>Description: Edu no limpia</p><p>Colaboradores: 5df02b21cdff37e550b47f235df02bca5887ffe787f6175b5df02c55b41baae8736c23995df12f1d4ddc8a089c9e0ab3</p><p>Jefe: 5df02c55b41baae8736c2399</p></div><button class="show-button">Crear Incidencia</button><form class="sc-htpNat hztmvV"><p>Create todo:</p><div><label>Todo Name:</label><input type="text" name="name" value=""></div><div><label for="type">Tipo:</label><input type="text" name="type" value=""></div><div><label for="description">Description:</label><input type="text" name="description" value=""></div><div><label for="assigned">Asignado:</label><input type="text" name="assigned" value=""></div><div><label for="creator">Creador:</label><input type="text" name="creator" value=""></div><div><label for="isFinish">Finish:</label><input type="text" name="isFinish" value=""></div><div><label for="idProject">Proyecto:</label><input type="text" name="idProject" value=""></div><input type="submit" class="submit-button" value="Create"></form><div><div class="todos-container"><div class="col-sm-6 margin-project"><div class="card"><div class="card-body"><h5 class="card-title">Benito Villamarin</h5><p class="card-text">bookstore</p><p class="card-text">erf</p><a href="http://localhost:3000/issues/5df3d6235607ca70c9a2a6c2" class="btn btn-primary">Ver incidencia</a><a href="http://localhost:3000/issues/5df3d6235607ca70c9a2a6c2" class="btn btn-secondary margin-left-btn">Editar incidencia</a><a href="http://localhost:3000/todos/5df25d81d9572c9eba585cf3#" class="btn btn-danger margin-left-btn">Borrar incidencia</a></div></div></div><div class="col-sm-6 margin-project"><div class="card"><div class="card-body"><h5 class="card-title">Benito Villamarin</h5><p class="card-text">bookstore</p><p class="card-text">erf</p><a href="http://localhost:3000/issues/5df3d7aa5607ca70c9a2a6c3" class="btn btn-primary">Ver incidencia</a><a href="http://localhost:3000/issues/5df3d7aa5607ca70c9a2a6c3" class="btn btn-secondary margin-left-btn">Editar incidencia</a><a href="http://localhost:3000/todos/5df25d81d9572c9eba585cf3#" class="btn btn-danger margin-left-btn">Borrar incidencia</a></div></div></div><div class="col-sm-6 margin-project"><div class="card"><div class="card-body"><h5 class="card-title">tyhtyhyyh</h5><p class="card-text">tyhtyhty</p><p class="card-text">erf</p><a href="http://localhost:3000/issues/5df4226104dfdc18e1bf6764" class="btn btn-primary">Ver incidencia</a><a href="http://localhost:3000/issues/5df4226104dfdc18e1bf6764" class="btn btn-secondary margin-left-btn">Editar incidencia</a><a href="http://localhost:3000/todos/5df25d81d9572c9eba585cf3#" class="btn btn-danger margin-left-btn">Borrar incidencia</a></div></div></div></div></div></div></div></header></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="./Todo App ✅_files/bundle.js"></script><script src="./Todo App ✅_files/1.chunk.js"></script><script src="./Todo App ✅_files/main.chunk.js"></script><script src="./Todo App ✅_files/main.e3bf2d3f5fc9affe0e96.hot-update.js"></script>
+
+</body></html>
