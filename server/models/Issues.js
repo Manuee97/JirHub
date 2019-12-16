@@ -6,10 +6,6 @@ const issuesSchema = new Schema(
     name: { type: String, required: true },
     type: { type: String, required: true },
     description: { type: String, required: true },
-    idProject: {
-      type: Schema.Types.ObjectId,
-      ref: "Todo"
-    },
     assigned: {
         type: Schema.Types.ObjectId,
         ref: "User"

@@ -21,8 +21,8 @@ class TodoService {
     .catch(error => console.error(error))
   }
 
-  createTodo = (name, description, type, collaborators, boss) => {
-    return this.instance.post('/new', { name, description, type, collaborators, boss })
+  createTodo = (name, description, type, issues, collaborators, boss) => {
+    return this.instance.post('/new', { name, description, type, issues, collaborators, boss })
     .then(res => Promise.resolve(res.data))
     .catch(error => console.error(error))
   }

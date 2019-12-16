@@ -22,11 +22,12 @@ router.get('/dashboard', (req, res, next) => {
 })
 
 router.post('/new', (req, res, next) => {
-  const { name, type, description, collaborators, boss } = req.body.name;
+  const { name, type, description, issues, collaborators, boss } = req.body.name;
   const newTodo = new Todo({
     name, 
     type,
     description,
+    issues,
     collaborators, 
     boss
   })

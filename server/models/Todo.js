@@ -7,6 +7,12 @@ const todoSchema = new Schema(
     type: { type: String, required: true },
     description: { type: String, required: true },
     done: { type: Boolean, default: false },
+    issues: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Issues"
+      }
+    ],
     collaborators: [
       {
         type: Schema.Types.ObjectId,

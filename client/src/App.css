@@ -56,7 +56,8 @@ img {
 
 
 body {
-  font: 14px sans-serif; }
+  font: 14px sans-serif; 
+}
 
 a {
   color: #00B7FF; }
@@ -73,7 +74,7 @@ a {
   overflow: hidden;
   text-align: center;
   width: 100vw;
-  height: calc(100vh - 62px);
+  height: calc(100vh - 50px);
   background: #0946a6;
 }
 
@@ -155,7 +156,7 @@ a {
 /* ------ Register and Login ------*/
 .containerRegister {
   width: 100vw;
-  height: calc(100vh - 48px);
+  height: calc(100vh - 50px);
   background: #0946a6;
 }
 
@@ -198,6 +199,16 @@ a {
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
+.form .danger {
+  background:#dc3545;
+}
+
+.form .danger:hover {
+  background:#b92735;
+  color:white;
+}
+
 .form button:hover,.form button:active,.form button:focus {
   background: #002765;
 }
@@ -304,6 +315,39 @@ margin-bottom: 30px;
   left: 0px;
 }
 
+.userNav {
+  color: white;
+  padding: 0;
+  margin: 0 auto;
+  margin-right: 30px;
+  font-size: 20px;;
+}
 
+.marginIndex {
+  background-color: #0946a6;
+  padding-top: 20px;
+}
 
+.buttonProject {
+  display: flex;
+}
+
+.issuesRow {
+display: flex;
+width: 100vw;
+}
+.issuesSize {
+  width: 45%;
+}
+
+.imgSize{
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 300px;
+}
+
+.textWhite {
+  color:white;
+}
 /*# sourceMappingURL=style.css.map */

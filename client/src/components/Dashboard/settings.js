@@ -1,40 +1,67 @@
 import React, { Component } from "react";
 import AuthService from "../../services/AuthService";
+import FormProject from './FormProject';
 
 export default class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: []
+      user: [],
+      show: false,
     }
     this.authService = new AuthService();
 
   }
 
-  render() {
+  toggleShow = () => {
+    const { show } = this.state;
+    this.setState({...this.state, show: !show})
+  }
 
+  render() {
+    const { show } = this.state;
     return (
+      <div>
+
+      
       <div className="card">
-        <img className="card-img-top" src={this.props.picture} />
+        <img className="card-img-top imgSize" src={this.props.location.stateUser.user.picture} />
         <div className="card-body">
     <h5 className="card-title">{this.props.name} {this.props.lastname}</h5>
-    <h5 className="card-title">{this.props.email}</h5>
+    <h5 className="card-title">{this.props.location.stateUser.user.email}</h5>
 
           <p className="card-text">
             Rango:
           </p>
-          <a href="#" className="btn btn-primary">
-            Editar usuario
+          <a className="btn btn-primary" onClick={this.toggleShow}>
+            <span className="textWhite">Editar usuario</span>
           </a>
         </div>
       </div>
+
+        <div className="modals">
+        
+        <FormProject show={show}>
+          <form onSubmit={this.handleSubmit} className="form">
+          <p>Editar Usuario:</p>
+          <div>
+          <label>Nombre:</label><input type="text" name="name" onChange={this.handleChange} value={this.props.location.stateUser.user.username} />
+          </div>
+          <div>
+          <label>Apellidos:</label><input type="text" name="lastname" onChange={this.handleChange} value={this.props.location.stateUser.user.lastname} />
+          </div>
+          <div>
+          <label>Email:</label><input type="text" name="email" onChange={this.handleChange} value={this.props.location.stateUser.user.email} />
+          </div>
+          <div className="buttonProject">
+              <a href="/" className="btn danger textWhite" onClick={this.toggleShow}>Salir</a>
+              <a href="/" className="btn btn-primary" ype="submit" value="Create">Editar</a>
+            </div>
+          </form>
+        </FormProject>
+        </div> 
+        </div>
+
     );
   }
 }
-
-// username: { type: String, required: true, unique: true },
-// lastname: { type: String, required: true },
-// email:    { type: String, required: true },
-// password: { type: String, required: true, minlength: 2 },
-// picture:  { type: String, default: 'https://i.stack.imgur.com/l60Hf.png' },
-// isAdmin:  { type: Boolean, default: true }

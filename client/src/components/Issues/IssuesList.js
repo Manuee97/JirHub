@@ -14,6 +14,7 @@ class TodoList extends React.Component {
     description: '',
     show: false,
     type: '',
+    issues: [],
     collaborators: [],
     boss: '',
     todos: null
@@ -25,12 +26,12 @@ class TodoList extends React.Component {
   }
 
   handleSubmit = (e) => {
-    const { name, description, type, collaborators, boss } = this.state;
+    const { name, description, type, issues, collaborators, boss } = this.state;
     e.preventDefault();
-    this.todoService.createTodo({name, description, type, collaborators, boss})
+    this.todoService.createTodo({name, description, type, issues, collaborators, boss})
       .then(
         () => {
-          this.setState({...this.state, name: '', description: '', type: '', collaborators: '' , boss: ''})
+          this.setState({...this.state, name: '', description: '', type: '', issues: '' , collaborators: '' , boss: ''})
           this.updateTodos()
         },
         (error) => console.error(error))
@@ -65,7 +66,7 @@ class TodoList extends React.Component {
 
   render() {
     const { loggedInUser } = this.props;
-    const { name, description, show, todos, type, collaborators, boss } = this.state;
+    const { name, description, show, todos, type, issues, collaborators, boss } = this.state;
     return (
       <div>
         

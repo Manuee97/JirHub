@@ -16,10 +16,10 @@ class DetailsProject extends Component {
       assigned: '',
       show: false,
       creator: '',
-      isFinish: '',
-      idProject: '',
+      isFinish: false,
       comentario: '',
-      issues: null
+      issues: null,
+      idProject: null,
     };
     this.issuesService = new IssuesService();
     this.todoService = new TodoService();
@@ -28,8 +28,9 @@ class DetailsProject extends Component {
 
   componentDidMount = () => {
     this.updateTodos()
+    const idProject = this.props.match.params.id
     this.todoService.fetchOneTodo(this.props.match.params.id).then(users => {
-      this.setState({ users: [users] });
+      this.setState({ ...this.state, users: [users], idProject: this.props.match.params.id});
     });
   };
 
@@ -46,16 +47,18 @@ class DetailsProject extends Component {
   }
 
   handleSubmit = (e) => {
-    const { name, type, description, assigned, creator, isFinish, idProject, comentario  } = this.state;
-    e.preventDefault();
-    this.issuesService.createTodo({name, type, description, assigned, creator, isFinish, idProject, comentario})
+    const { name, type, description, assigned, creator, isFinish, comentario, idProject  } = this.state;
+    e.preventDefault()
+    this.issuesService.createTodo({name, type, description, assigned, creator, isFinish, comentario, idProject})
       .then(
         () => {
-          this.setState({...this.state, name: '', type: '', description: '', assigned: '' , creator: '', isFinish: '', idProject: '', comentario: ''})
+          this.setState({...this.state, name: '', type: '', description: '', assigned: '' , creator: '', isFinish: '', comentario: ''})
           this.updateTodos()
         },
         (error) => console.error(error))
   }
+
+
 
   displayTodos = () => {
     const { issues } = this.state;
@@ -81,12 +84,13 @@ class DetailsProject extends Component {
   }
 
   render() {
-    const { name, type, description, assigned, creator, isFinish, idProject, show, issues, comentario} = this.state;
+    const { name, type, description, assigned, creator, isFinish, show, issues, comentario} = this.state;
     return (
 
 
 
       <div className="contenido">
+        {console.log(this)}
         {this.state.users.map(item => {
           return (
             <div>
@@ -136,21 +140,12 @@ class DetailsProject extends Component {
             />
           </div>
           <div>
-            <label htmlFor="isFinish">Finish:</label>
+            {/* <label htmlFor="isFinish">Finish:</label> */}
             <input
-              type="text"
+              type="hidden"
               name="isFinish"
               onChange={this.handleChange}
               value={isFinish}
-            />
-          </div>
-          <div>
-            <label htmlFor="idProject">Proyecto:</label>
-            <input
-              type="text"
-              name="idProject"
-              onChange={this.handleChange}
-              value={idProject}
             />
           </div>
           <div>
@@ -162,8 +157,10 @@ class DetailsProject extends Component {
               value={comentario}
             />
           </div>
-            <button className="btn btn-primary" ype="submit" value="Create">Crear</button>
-            <button className="btn btn-danger" onClick={this.toggleShow}>Salir</button>
+          <div className="buttonProject">
+              <button className="btn danger" onClick={this.toggleShow}>Salir</button>
+              <button className="btn btn-primary" ype="submit" value="Create">Crear</button>
+            </div>
           </form>
           
 
@@ -171,10 +168,18 @@ class DetailsProject extends Component {
         </div> 
         <div>
         <div className="contenido">
-        <div className="row">
-          {issues && this.displayTodos()}
-          {!issues && <p>Loading...</p> }
-        </div>
+          <div className="issuesRow">
+            <div className="issuesSize">
+              <h2>Finalizadas</h2>
+            {issues && this.displayTodos()}
+            {!issues && <p>Loading...</p> }
+            </div>
+            <div className="issuesSize">
+           <h2>No finalizadas</h2>
+           {issues && this.displayTodos()}
+            {!issues && <p>Loading...</p> }
+            </div>
+          </div>
         </div>
         </div>
       </div>

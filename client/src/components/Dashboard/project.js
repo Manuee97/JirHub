@@ -15,7 +15,8 @@ export default class Project extends Component {
     description: '',
     show: false,
     type: '',
-    boss: '',
+    issues: [],
+    boss: [],
     todos: null
     };
     this.todoService = new TodoService();
@@ -29,7 +30,6 @@ export default class Project extends Component {
       console.log(users)
       this.setState({...this.setState, users: users.user})
     })
-
   }
   
   handleChange = (e) => {
@@ -45,12 +45,12 @@ export default class Project extends Component {
   }
 
   handleSubmit = (e) => {
-    const { name, description, type, collaborators, boss } = this.state;
+    const { name, description, type, issues, collaborators, boss } = this.state;
     e.preventDefault();
-    this.todoService.createTodo({name, description, type, collaborators, boss})
+    this.todoService.createTodo({name, description, type, issues, collaborators, boss})
       .then(
         () => {
-          this.setState({...this.state, name: '', description: '', type: '', collaborators: '' , boss: ''})
+          this.setState({...this.state, name: '', description: '', type: '', issues:'', collaborators: '' , boss: []})
           this.updateTodos()
         },
         (error) => console.error(error))
@@ -58,6 +58,7 @@ export default class Project extends Component {
 
   displayTodos = () => {
     const { todos } = this.state;
+    console.log(this.state.todos);
     return todos.map((todo, i) => <Todo key={i} {...todo} updateTodos={this.updateTodos} />)
   }
  
@@ -65,6 +66,7 @@ export default class Project extends Component {
     this.todoService.fetchTodos()
       .then(
         (todos) => {
+          console.log(todos)
           this.setState({ ...this.state, todos })
         },
         (error) => {
@@ -80,7 +82,7 @@ export default class Project extends Component {
   
   render() {
     const { loggedInUser } = this.props;
-    const { name, description, show, todos, type, collaborators, boss } = this.state;
+    const { name, description, show, todos, type, issues, collaborators, boss } = this.state;
     return (
       <div className="contenido">
         <h1>Proyectos</h1>
@@ -118,8 +120,11 @@ export default class Project extends Component {
             <div>
               <label htmlFor="boss">Jefe:</label> <input type="text" name="boss" onChange={this.handleChange} value={boss} />
             </div>
-            <button className="btn btn-primary" ype="submit" value="Create">Crear</button>
-            <button className="btn btn-danger" onClick={this.toggleShow}>Salir</button>
+            <div className="buttonProject">
+              <button className="btn danger" onClick={this.toggleShow}>Salir</button>
+              <button className="btn btn-primary" ype="submit" value="Create">Crear</button>
+            </div>
+            
           </form>
           
 

@@ -15,7 +15,6 @@ class DetailsIssues extends Component {
       show: false,
       creator: '',
       isFinish: '',
-      idProject: '',
       issues: null
     };
     this.issuesService = new IssuesService();
@@ -41,7 +40,6 @@ class DetailsIssues extends Component {
                 <h3>Nombre de la incidencia: {item.name}</h3>
                 <p>Tipo: {item.type}</p>
                 <p>Description: {item.description}</p>
-                <p>Proyecto: {item.idProject}</p>
                 <p>Descripción del problema: {item.comentario}</p>
                 </div>
                 <div className="col-sm">
