@@ -16,6 +16,7 @@ const issuesSchema = new Schema(
       }],
     isFinish: { type: Boolean, default: false },
     comentario: { type: String, required: true },
+    comentariosIssues: [{ type: String }]
   },
   {
     timestamps: true,

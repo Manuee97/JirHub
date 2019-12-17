@@ -37,6 +37,7 @@ class Users extends Component {
                   <Table.HeaderCell>Apellidos</Table.HeaderCell>
                   <Table.HeaderCell>Email</Table.HeaderCell>
                   <Table.HeaderCell>ID</Table.HeaderCell>
+                  <Table.HeaderCell className="bossSize">Rango</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -47,6 +48,8 @@ class Users extends Component {
                       <Table.Cell>{user.lastname}</Table.Cell>
                       <Table.Cell>{user.email}</Table.Cell>
                       <Table.Cell>{user.id}</Table.Cell>
+                      {user.isAdmin && <Table.Cell className="bossSize"> Jefe de Equipo </Table.Cell>}
+                      {!user.isAdmin && <Table.Cell>Programador</Table.Cell>}
                     </Table.Row>
                   );
                 })}

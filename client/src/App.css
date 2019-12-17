@@ -104,17 +104,17 @@ a {
     stroke-dasharray: 900;
     stroke-linecap: butt;
     stroke-linejoin: round;
-    animation: dash 1.8s ease-in-out forwards;
+    animation: dash 0.5s ease-in-out forwards;
   }
   svg.intro.go .text-stroke:nth-child(2) {
     animation-delay: 0.4s;
   }
   svg.intro.go .text-stroke:nth-child(3) {
-    animation-delay: 3.9s;
+    animation-delay: 2s;
   }
   svg.intro.go .text-stroke-2 {
     stroke: white;
-    animation-delay: 3.9s;
+    animation-delay: 2s;
   }
   @keyframes dash {
     100% {
@@ -364,5 +364,9 @@ width: 100vw;
 
 .underline:hover {
   text-decoration: none;
+}
+
+.bossSize {
+  width: 450px;
 }
 /*# sourceMappingURL=style.css.map */

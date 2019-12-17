@@ -164,7 +164,7 @@ class DetailsProject extends Component {
           </div>
           <div className="buttonProject">
               <button className="btn danger" onClick={this.toggleShow}>Salir</button>
-              <button className="btn btn-primary" ype="submit" value="Create">Crear</button>
+              <button className="btn btn-primary" type="submit" value="Create">Crear</button>
             </div>
           </form>
           
@@ -175,24 +175,16 @@ class DetailsProject extends Component {
         <div className="contenido">
           <div className="issuesRow">
             <div className="issuesSize">
-              <h2>Finalizadas</h2>
-                {console.log(this)}
-              {/* { !this.props.location.stateUser.user.isAdmin && this.state.todos.map(user => {
+              {/* <div>
+               {this.state.issues.map(pepe => {
                   return (
                     
-                    <div className="col-sm-5 margin-project">
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title">{user.name}</h5>
-                        <p className="card-text">{user.description}</p>
-                        <p className="card-text">{user.boss}</p>
-                        <a href={`/todos/${user.id}`}  className="btn btn-primary">Ver proyecto</a>
-                      </div>
-                    </div>
-                  </div>
+                   <p>{pepe.name}</p>
                     
                   );
-          })}  */}
+          })}    
+              </div>
+              */}
 
 
             {issues && this.displayTodos()}

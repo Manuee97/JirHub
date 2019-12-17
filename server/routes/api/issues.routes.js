@@ -22,6 +22,7 @@ router.post("/new", (req, res, next) => {
     creator,
     isFinish,
     comentario,
+    comentariosIssues,
     idProject
   } = req.body.name;
 
@@ -32,7 +33,8 @@ router.post("/new", (req, res, next) => {
     assigned,
     creator,
     isFinish,
-    comentario
+    comentario,
+    comentariosIssues
   });
 
   newIssue

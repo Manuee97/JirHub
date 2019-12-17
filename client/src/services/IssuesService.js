@@ -27,8 +27,8 @@ class IssuesService {
     .catch(error => console.error(error))
   }
 
-  updateTodo = (id, done) => {
-    return this.instance.put(`/${id}`, {done})
+  updateTodo = (id, comentariosIssues) => {
+    return this.instance.put(`/${id}`, {comentariosIssues})
     .then(res => Promise.resolve(res.data))
     .catch(error => console.error(error))
   }

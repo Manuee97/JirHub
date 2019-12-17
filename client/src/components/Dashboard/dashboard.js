@@ -82,7 +82,7 @@ class Dashboard extends Component {
                 }
               }}
             >
-              <span class="nIssues">{loggedInUser.issues.length} incidencias</span>
+              <span className="nIssues">{loggedInUser.issues.length} incidencias</span>
             </Link></p>
               </li>
             {/* <li className="nav-item">

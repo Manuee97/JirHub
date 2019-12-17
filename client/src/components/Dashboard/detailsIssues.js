@@ -15,7 +15,8 @@ class DetailsIssues extends Component {
       show: false,
       creator: "",
       isFinish: "",
-      issues: null
+      issues: null, 
+      comentariosIssues: []
     };
     this.issuesService = new IssuesService();
     this.authService = new AuthService();
@@ -27,10 +28,29 @@ class DetailsIssues extends Component {
     });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.issuesService.updateTodo(this.props.match.params.id)
+    .then(
+      (comentariosIssues) => {
+        this.setState({ ...this.state, comentariosIssues })
+
+    });
+    console.log(this.state.comentariosIssues)
+
+    // e.preventDefault()
+    // this.issuesService.updateTodo(this.props.match.params.id)
+    //   .then(
+    //     () => {
+    //       this.setState({...this.state, comentariosIssues: ''})
+    //     },
+    //     (error) => console.error(error))
+  }
+
   render() {
+    const { comentariosIssues } = this.state;
     return (
       <div className="contenido">
-        {console.log(this)}
         {this.state.users.map(item => {
           return (
             <div className="contenido">
@@ -41,8 +61,7 @@ class DetailsIssues extends Component {
                   <p>Description: {item.description}</p>
                   <p>Descripción del problema: {item.comentario}</p>
                 </div>
-                <div className="col-sm">
-                  {console.log(this)}
+                <div className="col">
                   <p>Asignado: {this.state.users[0].assigned[0].username}</p>
                   <p>Creado: {this.state.users[0].creator[0].username}</p>
                   <p>Finalizada: {item.isFinish}</p>
@@ -50,8 +69,15 @@ class DetailsIssues extends Component {
                 <div className="w-100"></div>
                 <div className="col">
                   <h2>Comentarios</h2>
+                  <form onSubmit={this.handleSubmit} >
+                  <div>
+                  <textarea name="comentariosIssues" id="comentariosIssues" cols="80" rows="5"></textarea>
+                  </div>
+                  <button className="btn btn-primary" type="submit" value="Create">Crear comentario</button>
+                  </form>
+                  
                 </div>
-                <div className="col">
+                <div className="col-sm">
                   <h2>Subidas git</h2>
                 </div>
               </div>
