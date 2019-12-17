@@ -8,7 +8,11 @@ const userSchema = new Schema({
   email:    { type: String, required: true },
   password: { type: String, required: true, minlength: 2 },
   picture:  { type: String, default: 'https://i.stack.imgur.com/l60Hf.png' },
-  isAdmin:  { type: Boolean, default: true }
+  isAdmin:  { type: Boolean, default: false },
+  issues: [{
+    type: Schema.Types.ObjectId,
+    ref: "Issues"
+  }],
 }, {
   timestamps: true,
   toJSON: {

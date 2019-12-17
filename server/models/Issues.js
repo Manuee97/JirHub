@@ -6,14 +6,14 @@ const issuesSchema = new Schema(
     name: { type: String, required: true },
     type: { type: String, required: true },
     description: { type: String, required: true },
-    assigned: {
+    assigned: [{
         type: Schema.Types.ObjectId,
         ref: "User"
-      },
-    creator: {
+      }],
+    creator: [{
         type: Schema.Types.ObjectId,
         ref: "User"
-      },
+      }],
     isFinish: { type: Boolean, default: false },
     comentario: { type: String, required: true },
   },

@@ -56,7 +56,11 @@ class App extends React.Component {
             <Route exact path="/signup" render={(match) => <SignUp {...match} setUser={this.setUser} />} />
             <Route exact path="/logout" user={user} />
 
-            <PrivateRoute exact path="/" user={user} component={Dashboard} />
+            <PrivateRoute exact path="/" to={{
+                pathname: "/",
+                stateUser: {
+                  user: this.props.loggedInUser
+                }}} user={user} component={Dashboard} />
             <PrivateRoute exact path="/project" user={user} component={Dashboard} />
             <PrivateRoute exact path="/users" user={user} component={Dashboard} />
             <PrivateRoute exact path="/logs" user={user} component={Dashboard} />

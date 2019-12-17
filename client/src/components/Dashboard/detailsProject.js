@@ -20,6 +20,7 @@ class DetailsProject extends Component {
       comentario: '',
       issues: null,
       idProject: null,
+      todo: null
     };
     this.issuesService = new IssuesService();
     this.todoService = new TodoService();
@@ -29,8 +30,8 @@ class DetailsProject extends Component {
   componentDidMount = () => {
     this.updateTodos()
     const idProject = this.props.match.params.id
-    this.todoService.fetchOneTodo(this.props.match.params.id).then(users => {
-      this.setState({ ...this.state, users: [users], idProject: this.props.match.params.id});
+    this.todoService.fetchOneTodo(this.props.match.params.id).then(todo => {
+      this.setState({ ...this.state, todo: todo, idProject: this.props.match.params.id});
     });
   };
 
@@ -84,24 +85,28 @@ class DetailsProject extends Component {
   }
 
   render() {
-    const { name, type, description, assigned, creator, isFinish, show, issues, comentario} = this.state;
+    const { name, type, description, assigned, creator, isFinish, show, issues, comentario, todo} = this.state;
     return (
 
-
+      
 
       <div className="contenido">
-        {console.log(this)}
-        {this.state.users.map(item => {
-          return (
-            <div>
-              <h3>Nombre del proyecto: {item.name}</h3>
-              <p>Tipo: {item.type}</p>
-              <p>Description: {item.description}</p>
-              <p>Colaboradores: {item.collaborators}</p>
-              <p>Jefe: {item.boss}</p>
-            </div>
-          );
-        })}
+        {todo && (<div>
+              <h3>Nombre del proyecto: {todo.name}</h3>
+              <p>Tipo: {todo.type}</p>
+              <p>Description: {todo.description}</p>
+              <p>Programadores:&nbsp; 
+              {todo.collaborators.map(user => {
+                  return (
+                   <span>
+                      {user.username}&nbsp; 
+                   </span>
+                    
+                  );
+                })}
+              </p>
+              <p>Jefe: {todo.boss[0].username}</p>
+            </div>)}
 
         <button className="btn btn-primary" onClick={this.toggleShow}>
           Crear Incidencia
@@ -171,6 +176,25 @@ class DetailsProject extends Component {
           <div className="issuesRow">
             <div className="issuesSize">
               <h2>Finalizadas</h2>
+                {console.log(this)}
+              {/* { !this.props.location.stateUser.user.isAdmin && this.state.todos.map(user => {
+                  return (
+                    
+                    <div className="col-sm-5 margin-project">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">{user.name}</h5>
+                        <p className="card-text">{user.description}</p>
+                        <p className="card-text">{user.boss}</p>
+                        <a href={`/todos/${user.id}`}  className="btn btn-primary">Ver proyecto</a>
+                      </div>
+                    </div>
+                  </div>
+                    
+                  );
+          })}  */}
+
+
             {issues && this.displayTodos()}
             {!issues && <p>Loading...</p> }
             </div>

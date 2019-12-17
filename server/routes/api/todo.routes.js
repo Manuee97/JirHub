@@ -43,7 +43,7 @@ router.post('/new', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  Todo.findById(id)
+  Todo.findById(id).populate("boss").populate("collaborators")
   .then(todo => {
     res.status(200).json(todo)
   })

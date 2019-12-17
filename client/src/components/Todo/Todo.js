@@ -2,7 +2,6 @@ import React from 'react'
 import TodoService from '../../services/TodoService'
 
 export default function Todo({ id, name, description, updateTodos, boss }) {
-  console.log({boss})
   const service = new TodoService()
 
   const deleteTodo = () => {
@@ -12,7 +11,6 @@ export default function Todo({ id, name, description, updateTodos, boss }) {
     })
   }
   return (
-  
   <div className="col-sm-5 margin-project">
     <div className="card">
       <div className="card-body">

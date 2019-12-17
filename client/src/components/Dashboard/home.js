@@ -20,6 +20,7 @@ export default class Home extends Component {
     const {show} = this.state;
     return (
       <div className="contenido">
+
       <h1>Pagina de pruebas mientras me como una pizza</h1>
         <button className="btn btn-primary" onClick={this.toggleShow}>Crear Proyecto</button>
      

@@ -74,8 +74,17 @@ class Dashboard extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <p className="userNav">Hola, {loggedInUser.username}</p>
-            </li>
+              <p className="userNav">Hola {loggedInUser.username}, tienes <Link className="underline"
+              to={{
+                pathname: "/logs",
+                stateUser: {
+                  user: this.props.loggedInUser
+                }
+              }}
+            >
+              <span class="nIssues">{loggedInUser.issues.length} incidencias</span>
+            </Link></p>
+              </li>
             {/* <li className="nav-item">
               <!-- <a class="nav-link" href="/coasters">Montañas rusas</a> -->
             </li>
@@ -101,21 +110,35 @@ class Dashboard extends Component {
                 <i className="fas fa-home fa-2x itemFont"></i>Home
               </div>
             </a>
-            <a href="/project">
+            <Link
+              to={{
+                pathname: "/project",
+                stateUser: {
+                  user: this.props.loggedInUser
+                }
+              }}
+            >
               <div className="itemMenu">
                 <i className="fas fa-tasks fa-2x itemFont"></i>Project
               </div>
-            </a>
+            </Link>
             <a href="/users">
               <div className="itemMenu">
                 <i className="fas fa-user fa-2x itemFont"></i>Users
               </div>
             </a>
-            <a href="/logs">
+            <Link
+              to={{
+                pathname: "/logs",
+                stateUser: {
+                  user: this.props.loggedInUser
+                }
+              }}
+            >
               <div className="itemMenu">
-                <i className="fas fa-rss fa-2x itemFont"></i>Log
+                <i className="fas fa-rss fa-2x itemFont"></i>Issues
               </div>
-            </a>
+            </Link>
             <Link
               to={{
                 pathname: "/settings",

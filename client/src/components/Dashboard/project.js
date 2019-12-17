@@ -17,7 +17,7 @@ export default class Project extends Component {
     type: '',
     issues: [],
     boss: [],
-    todos: null
+    todos: []
     };
     this.todoService = new TodoService();
     this.authService = new AuthService();
@@ -27,7 +27,6 @@ export default class Project extends Component {
   componentDidMount=()=>{
     this.updateTodos()
     this.authService.allUsers().then((users) => {
-      console.log(users)
       this.setState({...this.setState, users: users.user})
     })
   }
@@ -58,15 +57,13 @@ export default class Project extends Component {
 
   displayTodos = () => {
     const { todos } = this.state;
-    console.log(this.state.todos);
-    return todos.map((todo, i) => <Todo key={i} {...todo} updateTodos={this.updateTodos} />)
+      return todos.map((todo, i) => <Todo key={i} {...todo} updateTodos={this.updateTodos} />)  
   }
  
   updateTodos = () => {
     this.todoService.fetchTodos()
       .then(
         (todos) => {
-          console.log(todos)
           this.setState({ ...this.state, todos })
         },
         (error) => {
@@ -79,7 +76,7 @@ export default class Project extends Component {
     const { show } = this.state;
     this.setState({...this.state, show: !show})
   }
-  
+
   render() {
     const { loggedInUser } = this.props;
     const { name, description, show, todos, type, issues, collaborators, boss } = this.state;
@@ -90,7 +87,7 @@ export default class Project extends Component {
 
 
         <div className="modals">
-        
+        {console.log(this)}
         <FormProject show={show}>
           <form onSubmit={this.handleSubmit} className="form">
           <p>Crear Proyecto:</p>
@@ -133,8 +130,25 @@ export default class Project extends Component {
 
         <div className="contenido">
         <div className="row">
-          {todos && this.displayTodos()}
-          {!todos && <p>Loading...</p> }
+          { !this.props.location.stateUser.user.isAdmin && this.state.todos.map(user => {
+                  return (
+                    
+                    <div className="col-sm-5 margin-project">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">{user.name}</h5>
+                        <p className="card-text">{user.description}</p>
+                        <p className="card-text">{user.boss}</p>
+                        <a href={`/todos/${user.id}`}  className="btn btn-primary">Ver proyecto</a>
+                      </div>
+                    </div>
+                  </div>
+                    
+                  );
+          })} 
+          
+          {  this.props.location.stateUser.user.isAdmin && this.displayTodos()}
+          {!todos && <p>Loading...</p> } 
         </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Issues = require("../../models/Issues");
 const Todo = require("../../models/Todo");
+const User = require("../../models/User");
 
 router.get("/", (req, res, next) => {
   Issues.find()
@@ -23,7 +24,7 @@ router.post("/new", (req, res, next) => {
     comentario,
     idProject
   } = req.body.name;
-  console.log(idProject);
+
   const newIssue = new Issues({
     name,
     type,
@@ -37,15 +38,22 @@ router.post("/new", (req, res, next) => {
   newIssue
     .save()
     .then(issue => {
+      const issueId = issue._id;
+      const issueAssigned = issue.assigned;
       Todo.findByIdAndUpdate(
         idProject,
         { $push: { issues: issue._id } },
         { new: true }
-      )
-        .then(todoUpdated => res.status(200).json(todoUpdated))
-        .catch(e => next(e));
+      ).then(todoUpdated => {
+        User.findByIdAndUpdate(
+          issueAssigned,
+          { $push: { issues: issueId } },
+          { new: true }
+        )
+          .then(userUpdated => res.status(200).json(userUpdated))
+          .catch(e => next(e));
+      });
     })
-
     .catch(error => {
       res.status(500).json({ message: "Error saving new Todo" });
     });
@@ -53,7 +61,7 @@ router.post("/new", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const { id } = req.params;
-  Issues.findById(id)
+  Issues.findById(id).populate("assigned").populate("creator")
     .then(issue => {
       res.status(200).json(issue);
     })

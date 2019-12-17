@@ -19,10 +19,10 @@ const todoSchema = new Schema(
         ref: "User"
       }
     ],
-    boss: {
+    boss: [{
       type: Schema.Types.ObjectId,
       ref: "User"
-    }
+    }]
   },
   {
     timestamps: true,

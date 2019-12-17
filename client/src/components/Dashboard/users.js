@@ -15,7 +15,6 @@ class Users extends Component {
   componentDidMount=()=>{
 
     this.authService.allUsers().then((users) => {
-      console.log(users)
       this.setState({...this.setState, users: users.user})
     })
 
