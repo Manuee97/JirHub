@@ -63,7 +63,9 @@ router.post("/new", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const { id } = req.params;
-  Issues.findById(id).populate("assigned").populate("creator")
+  Issues.findById(id)
+    .populate("assigned")
+    .populate("creator")
     .then(issue => {
       res.status(200).json(issue);
     })
@@ -72,7 +74,11 @@ router.get("/:id", (req, res, next) => {
 
 router.put("/:id", (req, res, next) => {
   const { id } = req.params;
-  Issues.findByIdAndUpdate(id, req.body)
+  const { comentariosIssues } = req.body;
+  console.log(comentariosIssues);
+  Issues.findByIdAndUpdate(id, {
+    $push: { comentariosIssues: comentariosIssues }
+  })
     .then(() => {
       res.status(200).json({ message: `Todo ${id} updated` });
     })
@@ -84,7 +90,15 @@ router.put("/:id", (req, res, next) => {
 router.delete("/:id", (req, res, next) => {
   const { id } = req.params;
   Issues.findByIdAndDelete(id)
-    .then(() => res.status(200).json({ message: `Todo ${id} deleted` }))
+    .then(issue => {
+      const userId = issue.assigned[0];
+      const issueId = issue._id;
+      User.findByIdAndUpdate(
+        userId,
+        { $pull: { issues: issueId } },
+        { new: true }
+      ).then(userUpdated => res.status(200).json(userUpdated)).catch(error => res.status(500).json({ message: "Something went wrong" }))
+    })
     .catch(error => res.status(500).json({ message: "Something went wrong" }));
 });
 

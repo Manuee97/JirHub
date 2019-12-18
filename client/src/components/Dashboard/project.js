@@ -83,9 +83,8 @@ export default class Project extends Component {
     return (
       <div className="contenido">
         <h1>Proyectos</h1>
-          <button className="btn btn-primary" onClick={this.toggleShow}>Crear Proyecto</button>
-
-
+    {this.props.location.stateUser.user.isAdmin && <button className="btn btn-primary" onClick={this.toggleShow}>Crear Proyecto</button> }
+          
         <div className="modals">
         {console.log(this)}
         <FormProject show={show}>
@@ -102,7 +101,7 @@ export default class Project extends Component {
             </div>
             <div>
 
-            <label htmlFor="collaboratos">Colaboradores:</label>
+            <label htmlFor="collaboratos">Programadores:</label>
             <select multiple> 
             {this.state.users.map(user => {
                   return (

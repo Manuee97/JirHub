@@ -162,10 +162,9 @@ class Dashboard extends Component {
             <Route
               exact
               path="/"
-              render={() => (
+              render={props => (
                 <Home
-                  name={loggedInUser.username}
-                  lastname={loggedInUser.lastname}
+                loggedInUser={loggedInUser}        
                 />
               )}
             />
@@ -194,7 +193,16 @@ class Dashboard extends Component {
                 />
               )}
             />
-            <Route exact path="/todos/:id" exact component={DetailsProject} />
+            <Route
+              exact
+              path="/todos/:id"
+              render={props => (
+                <DetailsProject
+                {...props}
+                loggedInUser={loggedInUser}        
+                />
+              )}
+            />
             <Route exact path="/issues/:id" exact component={DetailsIssues} />
           </Switch>
 

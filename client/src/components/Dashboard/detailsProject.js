@@ -15,7 +15,7 @@ class DetailsProject extends Component {
       description: '',
       assigned: '',
       show: false,
-      creator: '',
+      creator: this.props.loggedInUser.id,
       isFinish: false,
       comentario: '',
       issues: null,
@@ -53,7 +53,7 @@ class DetailsProject extends Component {
     this.issuesService.createTodo({name, type, description, assigned, creator, isFinish, comentario, idProject})
       .then(
         () => {
-          this.setState({...this.state, name: '', type: '', description: '', assigned: '' , creator: '', isFinish: '', comentario: ''})
+          this.setState({...this.state, name: '', type: '', description: '', assigned: '', isFinish: '', comentario: ''})
           this.updateTodos()
         },
         (error) => console.error(error))
@@ -136,9 +136,9 @@ class DetailsProject extends Component {
             />
           </div>
           <div>
-            <label htmlFor="creator">Creador:</label>
+            {/* <label htmlFor="creator">Creador:</label> */}
             <input
-              type="text"
+              type="hidden"
               name="creator"
               onChange={this.handleChange}
               value={creator}
@@ -175,24 +175,52 @@ class DetailsProject extends Component {
         <div className="contenido">
           <div className="issuesRow">
             <div className="issuesSize">
-              {/* <div>
-               {this.state.issues.map(pepe => {
+           <h2>Finalizadas</h2>
+              {/* this.props.loggedInUser.isAdmin */}
+               {!this.props.loggedInUser.isAdmin && issues ? this.state.issues.map(issue => {
                   return (
-                    
-                   <p>{pepe.name}</p>
+                    <div className="col-sm-10 margin-project">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">{issue.name}</h5>
+                        <p className="card-text">{issue.type}</p>
+                        <p className="card-text">{issue.description}</p>
+                        <div className="issuesRow">
+                        <a href={`/issues/${issue.id}`} className="btn btn-primary">Ver incidencia</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                     
                   );
-          })}    
-              </div>
-              */}
+          }):null}    
+              
+            
 
-
-            {issues && this.displayTodos()}
+            {this.props.loggedInUser.isAdmin && issues && this.displayTodos()}
             {!issues && <p>Loading...</p> }
             </div>
             <div className="issuesSize">
            <h2>No finalizadas</h2>
-           {issues && this.displayTodos()}
+           {!this.props.loggedInUser.isAdmin && issues ? this.state.issues.map(issue => {
+                  return (
+                    <div className="col-sm-10 margin-project">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">{issue.name}</h5>
+                        <p className="card-text">{issue.type}</p>
+                        <p className="card-text">{issue.description}</p>
+                        <div className="issuesRow">
+                        <a href={`/issues/${issue.id}`} className="btn btn-primary">Ver incidencia</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    
+                  );
+          }):null}  
+
+            {this.props.loggedInUser.isAdmin && issues && this.displayTodos()}
             {!issues && <p>Loading...</p> }
             </div>
           </div>

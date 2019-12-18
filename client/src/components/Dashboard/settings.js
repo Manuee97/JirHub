@@ -31,7 +31,7 @@ export default class Settings extends Component {
     <h5 className="card-title">{this.props.location.stateUser.user.email}</h5>
 
           <p className="card-text">
-            Rango:
+            Rango:  {this.props.location.stateUser.user.isAdmin && <span>Jefe de Equipo</span>} {!this.props.location.stateUser.user.isAdmin && <span>Programador</span>}
           </p>
           <a className="btn btn-primary" onClick={this.toggleShow}>
             <span className="textWhite">Editar usuario</span>

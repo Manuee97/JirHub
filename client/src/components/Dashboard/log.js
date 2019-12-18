@@ -1,15 +1,32 @@
 import React, { Component } from "react";
+import IssuesService from "../../services/IssuesService";
+
 
 export default class Logs extends Component {
     constructor (props) {
         super(props);
+        this.state = {
+          issues: [],
+        };
+        this.issuesService = new IssuesService();
 
       }
+
+      componentDidMount = () => {
+        let newIssues = [...this.state.issues];
+        this.props.location.stateUser.user.issues.map(id => {
+            this.issuesService.fetchOneTodo(id).then(issue => {
+              newIssues.push(issue)
+              this.setState({ ...this.state, issues: newIssues });
+            })
+        })
+      };
+
+
   render() {
-    // const { username, password } = this.state;
     return (
       <div className="contenido">
-        {console.log(this)}
+        
         <h1>
           Incidencias asignadas
         </h1>
