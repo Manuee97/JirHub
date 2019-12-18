@@ -18,7 +18,6 @@ export default class Home extends Component {
 
   render() {
     const {show} = this.state;
-    console.log(this.props)
     return (
       <div className="contenido">
 

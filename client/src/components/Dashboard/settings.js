@@ -21,10 +21,10 @@ export default class Settings extends Component {
   render() {
     const { show } = this.state;
     return (
-      <div>
+      <div className="paddingSettings">
 
       
-      <div className="card">
+      <div className="card paddingSettingsCard">
         <img className="card-img-top imgSize" src={this.props.location.stateUser.user.picture} />
         <div className="card-body">
     <h5 className="card-title">{this.props.name} {this.props.lastname}</h5>

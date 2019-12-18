@@ -27,7 +27,7 @@ class Dashboard extends Component {
     const { loggedInUser } = this.props;
     return (
       <nav className="navbar navbar-expand-lg">
-        <svg className="intro" viewBox="0 0 200 86">
+        <svg className="intro go" viewBox="0 0 200 86">
           <a className="nav-link" href="/">
             <text
               textAnchor="start"

@@ -369,4 +369,21 @@ width: 100vw;
 .bossSize {
   width: 450px;
 }
+
+.paddingSettings{
+  padding: 20px;
+} 
+.paddingSettingsCard{
+  padding-left: 20px;
+  padding-right: 20px;
+} 
+
+.comments {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-left: 15px;
+  background: #ecf0f1;
+}
 /*# sourceMappingURL=style.css.map */

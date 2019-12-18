@@ -72,6 +72,7 @@ export default class Project extends Component {
         }
       )
   }
+  
   toggleShow = () => {
     const { show } = this.state;
     this.setState({...this.state, show: !show})
@@ -86,7 +87,6 @@ export default class Project extends Component {
     {this.props.location.stateUser.user.isAdmin && <button className="btn btn-primary" onClick={this.toggleShow}>Crear Proyecto</button> }
           
         <div className="modals">
-        {console.log(this)}
         <FormProject show={show}>
           <form onSubmit={this.handleSubmit} className="form">
           <p>Crear Proyecto:</p>

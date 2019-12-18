@@ -67,11 +67,20 @@ class DetailsIssues extends Component {
             <h2>Comentarios</h2>
             <form onSubmit={this.handleSubmit} >
             <div>
-            <textarea name="comentariosIssues" id="comentariosIssues" onChange={this.handleChange} cols="80" rows="5" value={comentariosIssues}></textarea>
+            <textarea name="comentariosIssues" id="comentariosIssues" onChange={this.handleChange} cols="90" rows="5" value={comentariosIssues}></textarea>
             </div>
+            <br/>
             <button className="btn btn-primary" type="submit" value="Create">Crear comentario</button>
             </form>
             
+            {this.state.issue.comentariosIssues.map(issue => {
+                  return (
+                    <div className="card comments">
+                      <p>{issue}</p>
+                    </div>
+                    
+                  );
+          })}   
           </div>
           <div className="col-sm">
             <h2>Subidas git</h2>

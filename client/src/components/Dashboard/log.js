@@ -26,19 +26,28 @@ export default class Logs extends Component {
   render() {
     return (
       <div className="contenido">
-        
+      {console.log(this)}
         <h1>
           Incidencias asignadas
         </h1>
+        <div className="row">
 
-        {this.props.location.stateUser.user.issues.map(id => {
+        {this.state.issues.map(id => {
                   return (
-                    <a href={`/issues/${id}`} className="btn btn-primary">Ver incidencia</a>
-                    
+                    <div className="col-sm-5 margin-project">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">{id.name}</h5>
+                        <p className="card-text">{id.type}</p>
+                        <p className="card-text">{id.description}</p>
+                        <a href={`/issues/${id.id}`}  className="btn btn-primary">Ver incidencia</a>
+                      </div>
+                    </div>
+                  </div>                    
                   );
                 })}
 
-        
+        </div>
         {/* /issues/5df7b06a774ee075ec9cadbc */}
         {/* <img src={loggedInUser.picture} alt=""/> */}
       </div>
