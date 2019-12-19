@@ -45,7 +45,7 @@ class DetailsIssues extends Component {
 
   render() {
     const { comentariosIssues, issue } = this.state;
-    console.log(this.state.issue)
+    console.log(this)
     return (
       <div className="contenido">
         {issue && 

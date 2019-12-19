@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Issues = require("../../models/Issues");
 const Todo = require("../../models/Todo");
 const User = require("../../models/User");
+const fetch = require("node-fetch");
 
 router.get("/", (req, res, next) => {
   Issues.find()
@@ -63,6 +64,21 @@ router.post("/new", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const { id } = req.params;
+  
+  fetch("https://api.github.com/repos/Manuee97/pruebasProyecto/commits")
+  .then(commits => commits.json())
+  .then(commits => {
+    commits = commits.filter(commit => commit.commit.message == id)
+
+    const commit1 = commits[0].sha;
+    const commit2 = commits[1].sha;
+
+    return fetch(`https://api.github.com/repos/Manuee97/pruebasProyecto/compare/${commit2}...${commit1}`)
+}).then(differences => differences.json())
+.then(differences => {
+  differences.files.forEach(file => console.log(file.patch))
+});
+
   Issues.findById(id)
     .populate("assigned")
     .populate("creator")
@@ -100,6 +116,8 @@ router.delete("/:id", (req, res, next) => {
       ).then(userUpdated => res.status(200).json(userUpdated)).catch(error => res.status(500).json({ message: "Something went wrong" }))
     })
     .catch(error => res.status(500).json({ message: "Something went wrong" }));
+
+   
 });
 
 module.exports = router;
