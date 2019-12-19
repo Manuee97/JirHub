@@ -64,6 +64,7 @@ router.post("/new", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const { id } = req.params;
+  let diffPayload;
   
   fetch("https://api.github.com/repos/Manuee97/pruebasProyecto/commits")
   .then(commits => commits.json())
@@ -76,16 +77,16 @@ router.get("/:id", (req, res, next) => {
     return fetch(`https://api.github.com/repos/Manuee97/pruebasProyecto/compare/${commit2}...${commit1}`)
 }).then(differences => differences.json())
 .then(differences => {
-  differences.files.forEach(file => console.log(file.patch))
-});
-
   Issues.findById(id)
     .populate("assigned")
     .populate("creator")
     .then(issue => {
-      res.status(200).json(issue);
+      let patch = differences.files[0].patch
+      let dataPayload = {issue, patch}
+      res.status(200).json(dataPayload);
     })
     .catch(error => res.status(500).json({ message: "Todo not found" }));
+});
 });
 
 router.put("/:id", (req, res, next) => {
