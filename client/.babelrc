@@ -1,8 +1,8 @@
 {
     "plugins": [
       ["prismjs", {
-        "languages": ["javascript", "css", "html", "diff"],
-        "plugins": ["line-numbers", "show-language"],
+        "languages": ["javascript", "css", "html", "diff", "js"],
+        "plugins": ["line-numbers", "show-language", "diff-highlight"],
         "theme": "okaidia",
         "css": true
       }]

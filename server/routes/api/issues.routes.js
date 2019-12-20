@@ -42,6 +42,7 @@ router.post("/new", (req, res, next) => {
     .save()
     .then(issue => {
       const issueId = issue._id;
+      console.log(issueId)
       const issueAssigned = issue.assigned;
       Todo.findByIdAndUpdate(
         idProject,

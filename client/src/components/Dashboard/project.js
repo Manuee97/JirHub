@@ -127,7 +127,7 @@ export default class Project extends Component {
         </FormProject>
         </div> 
 
-        <div className="contenido">
+        <div>
         <div className="row">
           { !this.props.location.stateUser.user.isAdmin && this.state.todos.map(user => {
                   return (

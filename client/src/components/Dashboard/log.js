@@ -14,6 +14,7 @@ export default class Logs extends Component {
 
       componentDidMount = () => {
         let newIssues = [...this.state.issues];
+        console.log(this.props.location.stateUser.user)
         this.props.location.stateUser.user.issues.map(id => {
             this.issuesService.fetchOneTodo(id).then(issue => {
               newIssues.push(issue)
@@ -32,15 +33,15 @@ export default class Logs extends Component {
         </h1>
         <div className="row">
 
-        {this.state.issues.map(id => {
+        {this.state.issues && this.state.issues.map(id => {
                   return (
                     <div className="col-sm-5 margin-project">
                     <div className="card">
                       <div className="card-body">
-                        <h5 className="card-title">{id.name}</h5>
-                        <p className="card-text">{id.type}</p>
-                        <p className="card-text">{id.description}</p>
-                        <a href={`/issues/${id.id}`}  className="btn btn-primary">Ver incidencia</a>
+                        <h5 className="card-title">{id.issue.name}</h5>
+                        <p className="card-text">{id.issue.type}</p>
+                        <p className="card-text">{id.issue.description}</p>
+                        <a href={`/issues/${id.issue.id}`}  className="btn btn-primary">Ver incidencia</a>
                       </div>
                     </div>
                   </div>                    

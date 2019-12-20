@@ -19,25 +19,9 @@ export default class Home extends Component {
   render() {
     const {show} = this.state;
     return (
-      <div className="contenido">
+      <div className="fake">
 
-      <h1>Pagina de pruebas mientras me como una pizza</h1>
-        <button className="btn btn-primary" onClick={this.toggleShow}>Crear Proyecto</button>
-     
-      <div className="modals">
-        
-        <FormProject show={show}>
-          <form action="" className="form">
-          <p>Create todo:</p>
-          <div>
-            <label>Todo Name:</label><input type="text" name="name"   />
-          </div>
-          <button className="btn btn-primary" onClick={this.toggleShow}>Salir</button>
-          </form>
-          
-
-        </FormProject>
-        </div>
+        <img className="fakeImg" src="https://res.cloudinary.com/duczhwe2w/image/upload/v1576852327/dashboard-free-psd_aujbpn.jpg" alt=""/>
         
       </div>
 

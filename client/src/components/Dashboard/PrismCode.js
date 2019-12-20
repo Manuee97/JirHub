@@ -6,10 +6,10 @@ export class PrismCode extends React.Component {
     this.ref = React.createRef()
   }
   componentDidMount() {
-    this.highlight()
+    setTimeout(() => this.highlight(), 0)
   }
   componentDidUpdate() {
-    this.highlight()
+    setTimeout(() => this.highlight(), 0)
   }
   highlight = () => {
     if (this.ref && this.ref.current) {
@@ -19,11 +19,12 @@ export class PrismCode extends React.Component {
   render() {
     const { code, plugins, language } = this.props
     return (
-      <pre>
-        <code className={`language-javascript`}>
+        <pre className={`highlight`}>
+        <code ref={this.ref} className={`language-js show-language`}>
           {code.trim()}
         </code>
       </pre>
+  
     )
   }
 }

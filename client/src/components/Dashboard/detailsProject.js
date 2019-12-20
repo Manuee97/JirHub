@@ -177,7 +177,8 @@ class DetailsProject extends Component {
             <div className="issuesSize">
            <h2>Finalizadas</h2>
               {/* this.props.loggedInUser.isAdmin */}
-               {!this.props.loggedInUser.isAdmin && issues ? this.state.issues.map(issue => {
+              
+               {!this.props.loggedInUser.isAdmin && issues ? this.state.issues.filter(issue => issue.isFinish==true).map(issue => {
                   return (
                     <div className="col-sm-10 margin-project">
                     <div className="card">
@@ -202,7 +203,7 @@ class DetailsProject extends Component {
             </div>
             <div className="issuesSize">
            <h2>No finalizadas</h2>
-           {!this.props.loggedInUser.isAdmin && issues ? this.state.issues.map(issue => {
+           {!this.props.loggedInUser.isAdmin && issues ? this.state.issues.filter(issue => issue.isFinish==false).map(issue => {
                   return (
                     <div className="col-sm-10 margin-project">
                     <div className="card">

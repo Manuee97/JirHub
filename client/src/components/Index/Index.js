@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import AuthService from "../../services/AuthService";
+import Logo from './Logo';
+
 
 export default class Index extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      show: false
+    }
     this.authService = new AuthService();
   }
 
@@ -11,6 +16,7 @@ export default class Index extends Component {
     username: "",
     lastname: "",
     email: "",
+    show: false,
     password: "",
     picture: ""
   };
@@ -46,9 +52,12 @@ export default class Index extends Component {
     );
   };
 
+  toggleShow = () => {
+    const { show } = this.state;
+    this.setState({...this.state, show: !show})
+  }
 
   Navbar = () => {
-    const { loggedInUser } = this.props;
     return (
       <nav className="navbar navbar-expand-lg">
         <svg className="intro" viewBox="0 0 200 86">
@@ -113,9 +122,19 @@ export default class Index extends Component {
   };
 
   render() {
+    const { show } = this.state;
+
     return (
       <div className="marginIndex">
-        {this.Navbar()}
+
+<Logo show={show}>
+          <div>
+         <div className="fontLogo">
+         JirHub
+         </div>
+          </div>
+        </Logo>
+                {this.Navbar()}
       <div className="containerIndex">
         <div className="text-svg">
           <svg
@@ -155,7 +174,8 @@ export default class Index extends Component {
           </a>
         </div>
         <div className="footer">
-          <p>JirHub creado por un <a href="https://www.linkedin.com/in/manuelalvarezrosado/">IronHacker</a> con  <span className="heart"> ♥</span></p>
+          <p>JirHub creado por un <a href="https://www.linkedin.com/in/manuelalvarezrosado/">IronHacker</a> con <button className="heart" onClick={this.toggleShow}>
+          ♥</button></p>
         </div>
       </div>
       </div>

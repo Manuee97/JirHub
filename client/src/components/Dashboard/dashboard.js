@@ -112,6 +112,18 @@ class Dashboard extends Component {
             </a>
             <Link
               to={{
+                pathname: "/logs",
+                stateUser: {
+                  user: this.props.loggedInUser
+                }
+              }}
+            >
+              <div className="itemMenu">
+                <i className="fas fa-rss fa-2x itemFont"></i>Issues
+              </div>
+            </Link>
+            <Link
+              to={{
                 pathname: "/project",
                 stateUser: {
                   user: this.props.loggedInUser
@@ -127,18 +139,6 @@ class Dashboard extends Component {
                 <i className="fas fa-user fa-2x itemFont"></i>Users
               </div>
             </a>
-            <Link
-              to={{
-                pathname: "/logs",
-                stateUser: {
-                  user: this.props.loggedInUser
-                }
-              }}
-            >
-              <div className="itemMenu">
-                <i className="fas fa-rss fa-2x itemFont"></i>Issues
-              </div>
-            </Link>
             <Link
               to={{
                 pathname: "/settings",
